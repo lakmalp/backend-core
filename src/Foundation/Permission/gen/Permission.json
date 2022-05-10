@@ -1,0 +1,34 @@
+{
+  "ModelName": "Permission",
+  "TableName": "permissions",
+  "ManytoMany": "False",
+  "Utillity": "False",
+  "ColDefinitions": [
+    {
+      "colName": "code",
+      "colDataType": "string",
+      "colLength": "50",
+      "colNotNull": "True",
+      "colModel": ""
+    },
+    {
+      "colName": "description",
+      "colDataType": "string",
+      "colLength": "100",
+      "colNotNull": "True",
+      "colModel": ""
+    },
+    {
+      "colName": null,
+      "colDataType": null,
+      "colLength": null,
+      "colNotNull": null,
+      "colModel": null
+    }
+  ],
+  "ChildDefinitions": [
+    {
+      "colHasMany": "Grant"
+    }
+  ]
+}

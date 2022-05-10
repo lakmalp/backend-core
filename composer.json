@@ -1,0 +1,25 @@
+{
+    "name": "lakmalp/backend-core",
+    "description": "Laravel backend framework of Premia Labs (Pvt) Ltd",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Lakmal Premaratne",
+            "email": "lakmalp@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Premialabs\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Premialabs\\Providers\\BackendServiceProvider"
+            ]
+        }
+    }
+}

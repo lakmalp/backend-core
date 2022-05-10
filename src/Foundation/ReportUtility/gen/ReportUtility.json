@@ -1,0 +1,1 @@
+{"ModelName": "ReportUtility","TableName": "report_utilitys","ManytoMany": "False","Utillity": "True","ColDefinitions":[{"colName":null,"colDataType":null,"colLength":null,"colNotNull":null,"colModel":null}],"ChildDefinitions":[]} 
