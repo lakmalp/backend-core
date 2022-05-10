@@ -29,7 +29,7 @@ class BackendServiceProvider extends ServiceProvider
         });
 
         if (file_exists(config_path('premialabs.php'))) {
-            rename(config_path('premialabs.php'), config_path('premialabs.' . time() . '.php'));
+            rename(config_path('premialabs.php'), config_path() . '/premialabs.' . time() . '.php');
         }
 
         $this->publishes([
