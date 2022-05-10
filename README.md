@@ -3,7 +3,7 @@
 ## Installation
 
 1. Create new Laravel project with correct laravel framework version.
-```json
+```
 composer create-project laravel/laravel="x.y.z" <PROJECT_NAME>
 ```
 
