@@ -28,6 +28,8 @@ class BackendServiceProvider extends ServiceProvider
             $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
         });
 
+        echo config_path('premialabs.php');
+
         if (file_exists(config_path('premialabs.php'))) {
             rename(config_path('premialabs.php'), config_path() . '/premialabs.' . time() . '.php');
         }
