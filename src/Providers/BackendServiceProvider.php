@@ -14,7 +14,7 @@ class BackendServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->mergeConfigFrom(__DIR__ . '/../../config/premialabs.php', 'premialabs');
     }
 
     /**
@@ -38,7 +38,7 @@ class BackendServiceProvider extends ServiceProvider
 
             $this->publishes([
                 __DIR__ . '/../../config/premialabs.php' => config_path('premialabs.php'),
-            ], 'laravel-assets');
+            ], 'premialabs-config');
         }
     }
 }
