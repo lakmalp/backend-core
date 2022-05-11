@@ -25,19 +25,19 @@ class AuditableModelController extends Controller
 
     public function fetch()
     {
-        return response()->json(['beingAudited' => $this->beingAudited(), 'allToBeAudited' => AuditableModels::getAll()], 200);
+        return response()->json(['beingAudited' => $this->beingAudited(), 'allToBeAudited' => config('premialabs.eligibleModelsForAuditing', [])], 200);
     }
 
     public function create(Request $request)
     {
         $model = $request->input('model');
         AuditableModel::create(['model' => $model]);
-        return response()->json(['beingAudited' => $this->beingAudited(), 'allToBeAudited' => AuditableModels::getAll()], 200);
+        return response()->json(['beingAudited' => $this->beingAudited(), 'allToBeAudited' => config('premialabs.eligibleModelsForAuditing', [])], 200);
     }
 
     public function delete(AuditableModel $auditableModel)
     {
         $auditableModel->delete();
-        return response()->json(['beingAudited' => $this->beingAudited(), 'allToBeAudited' => AuditableModels::getAll()], 200);
+        return response()->json(['beingAudited' => $this->beingAudited(), 'allToBeAudited' => config('premialabs.eligibleModelsForAuditing', [])], 200);
     }
 }
