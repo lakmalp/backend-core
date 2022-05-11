@@ -1,0 +1,65 @@
+{
+  "ModelName": "SampleOrder",
+  "TableName": "sample_orders",
+  "ManytoMany": "False",
+  "Utillity": "False",
+  "ColDefinitions": [
+    {
+      "colName": "_seq_",
+      "colDataType": "string",
+      "colLength": 10,
+      "colNotNull": null,
+      "colModel": null,
+      "colParentAlias": null
+    },
+    {
+      "colName": "po_no",
+      "colDataType": "string",
+      "colLength": "15",
+      "colNotNull": "True",
+      "colModel": null,
+      "colParentAlias": null
+    },
+    {
+      "colName": "created_date",
+      "colDataType": "datetime",
+      "colLength": "",
+      "colNotNull": "True",
+      "colModel": null,
+      "colParentAlias": null
+    },
+    {
+      "colName": "delivery_date",
+      "colDataType": "datetime",
+      "colLength": "",
+      "colNotNull": "True",
+      "colModel": null,
+      "colParentAlias": null
+    },
+    {
+      "colName": "status",
+      "colDataType": "string",
+      "colLength": "30",
+      "colNotNull": "True",
+      "colModel": null,
+      "colParentAlias": null
+    },
+    {
+      "colName": "created_by_id",
+      "colDataType": "unsignedBigInteger",
+      "colLength": null,
+      "colNotNull": null,
+      "colModel": "User",
+      "colParentAlias": "created_by"
+    },
+    {
+      "colName": "last_modified_by_id",
+      "colDataType": "unsignedBigInteger",
+      "colLength": null,
+      "colNotNull": null,
+      "colModel": "User",
+      "colParentAlias": "last_modified_by"
+    }
+  ],
+  "ChildDefinitions": []
+}
