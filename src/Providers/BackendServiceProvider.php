@@ -14,7 +14,7 @@ class BackendServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../../config/premialabs.php', 'premialabs');
+        //
     }
 
     /**
