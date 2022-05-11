@@ -15,14 +15,6 @@ class BackendServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__ . '/../../config/premialabs.php', 'premialabs');
-
-        if (file_exists(config_path('premialabs.php'))) {
-            rename(config_path('premialabs.php'), config_path() . '/premialabs.' . time() . '.php');
-        }
-
-        $this->publishes([
-            __DIR__ . '/../../config/premialabs.php' => config_path('premialabs.php'),
-        ], 'laravel-assets');
     }
 
     /**
@@ -37,5 +29,16 @@ class BackendServiceProvider extends ServiceProvider
         });
 
         $this->loadMigrationsFrom(__DIR__ . '/../migrations');
+
+        if ($this->app->runningInConsole()) {
+
+            if (file_exists(config_path('premialabs.php'))) {
+                rename(config_path('premialabs.php'), config_path() . '/premialabs.' . time() . '.php');
+            }
+
+            $this->publishes([
+                __DIR__ . '/../../config/premialabs.php' => config_path('premialabs.php'),
+            ], 'premialabs-config');
+        }
     }
 }
