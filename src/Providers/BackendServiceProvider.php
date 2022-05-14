@@ -32,9 +32,9 @@ class BackendServiceProvider extends ServiceProvider
 
         if ($this->app->runningInConsole()) {
 
-            if (file_exists(config_path('premialabs.php'))) {
-                rename(config_path('premialabs.php'), config_path() . '/premialabs.' . time() . '.php');
-            }
+            // if (file_exists(config_path('premialabs.php'))) {
+            //     rename(config_path('premialabs.php'), config_path() . '/premialabs.' . time() . '.php');
+            // }
 
             $this->publishes([
                 __DIR__ . '/../../config/premialabs.php' => config_path('premialabs.php'),
