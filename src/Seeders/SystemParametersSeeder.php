@@ -1,6 +1,6 @@
 <?php
 
-namespace Premialabs\Foundation\Seeders;
+namespace Premialabs\Seeders;
 
 use Premialabs\Foundation\SystemParameter;
 use Illuminate\Database\Seeder;
