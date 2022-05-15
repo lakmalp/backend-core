@@ -47,14 +47,4 @@ class PermissionRepo extends PermissionBaseRepo
 
     return $recs;
   }
-
-  public function getNavigator()
-  {
-    return (new Security)->getNavigator();
-  }
-
-  public function getRoutingAndNavs()
-  {
-    return (new Security)->getRoutingAndNavs();
-  }
 }
