@@ -118,7 +118,7 @@ class SampleOrderLineBaseRepo extends BaseRepo
 
     $data = SampleOrderLine::where('id', $model_id)
       ->orderBy('_seq')
-      ->with(['user'])
+      ->with([])
       ->get()
       ->map(
         function ($item, $key) use (&$i) {
