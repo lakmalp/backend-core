@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Premialabs\Foundation\User\gen\User;
+use App\Models\User;
 
 class InsertAdminUser extends Migration
 {
