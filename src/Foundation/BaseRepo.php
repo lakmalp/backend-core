@@ -15,7 +15,7 @@ abstract class BaseRepo
       $next_seq = 100000;
     } else {
       if ($positioning === "above") {
-        $prev_line_seq = $model::where($parent_column_name, $parent_id)->where('_seq_', '<', $current_sequence)->max('_seq_');
+        $prev_line_seq = $model::where($parent_column_name, $parent_id)->where('_seq', '<', $current_sequence)->max('_seq');
         if (is_null($prev_line_seq)) {
           // RMB has been executed on first row
           $next_seq = (0 + $current_sequence) / 2;
@@ -24,7 +24,7 @@ abstract class BaseRepo
           $next_seq = ($prev_line_seq + $current_sequence) / 2;
         }
       } else if ($positioning === "below") {
-        $next_line_seq = $model::where($parent_column_name, $parent_id)->where('_seq_', '>', $current_sequence)->min('_seq_');
+        $next_line_seq = $model::where($parent_column_name, $parent_id)->where('_seq', '>', $current_sequence)->min('_seq');
         if (is_null($next_line_seq)) {
           // RMB has been executed on last row
           $next_seq = $current_sequence + 100;
