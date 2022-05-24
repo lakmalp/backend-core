@@ -2,4 +2,4 @@
 
 Please refer to release description for installation instructions.
 
-Current version 1.0.16
+Current version 1.1.0

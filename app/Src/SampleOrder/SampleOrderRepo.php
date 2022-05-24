@@ -18,7 +18,7 @@ class SampleOrderRepo extends SampleOrderBaseRepo
       'po_no' => $max_po_no + 1,
       'created_date' => Carbon::now(),
       'status' => 'Preliminary',
-      '_seq_' => $this->getNextSequence(null, null, null, 0, null)
+      '_seq' => $this->getNextSequence(null, null, null, 0, null)
     ];
   }
 
@@ -56,8 +56,8 @@ class SampleOrderRepo extends SampleOrderBaseRepo
     $po_id = $request->query('po_id');
     $i = 1;
 
-    return SampleOrder::orderBy('_seq_')->get()->map(function ($item, $key) use (&$i) {
-      $item['_line_no_'] = $i++;
+    return SampleOrder::orderBy('_seq')->get()->map(function ($item, $key) use (&$i) {
+      $item['_line_no'] = $i++;
       return $item;
     });
   }

@@ -40,7 +40,7 @@ class PermissionRepo extends PermissionBaseRepo
     //     ->get();
 
     //   $recs->transform(function ($item, $key) use ($chunk, $page_no) {
-    //     $item['_seq_'] = ($chunk * ($page_no - 1)) + $key + 1; // +1 is done since $key is index
+    //     $item['_seq'] = ($chunk * ($page_no - 1)) + $key + 1; // +1 is done since $key is index
     //     return $item;
     //   });
     // }

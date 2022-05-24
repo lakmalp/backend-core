@@ -5,7 +5,7 @@
   "Utillity": "False",
   "ColDefinitions": [
     {
-      "colName": "_seq_",
+      "colName": "_seq",
       "colDataType": "string",
       "colLength": 10,
       "colNotNull": null,
