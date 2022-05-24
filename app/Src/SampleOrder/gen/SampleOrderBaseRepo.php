@@ -116,7 +116,7 @@ class SampleOrderBaseRepo extends BaseRepo
 
     $data = SampleOrder::where('id', $model_id)
       ->orderBy('_seq')
-      ->with(['user'])
+      ->with([])
       ->get()
       ->map(
         function ($item, $key) use (&$i) {
