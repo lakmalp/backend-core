@@ -13,7 +13,7 @@ class SampleOrder extends FndModel
   use ModelModifierTrait;
 
   protected $fillable = [
-    '_seq_',
+    '_seq',
     'po_no',
     'created_date',
     'delivery_date',

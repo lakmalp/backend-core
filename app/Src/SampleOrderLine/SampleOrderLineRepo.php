@@ -26,7 +26,7 @@ class SampleOrderLineRepo extends SampleOrderLineBaseRepo
     //   $next_seq = 100000;
     // } else {
     //   if ($positioning === "above") {
-    //     $prev_line_seq = SampleOrderLine::where('purchase_order_id', $po_id)->where('_seq_', '<', $curr_seq)->max('_seq_');
+    //     $prev_line_seq = SampleOrderLine::where('purchase_order_id', $po_id)->where('_seq', '<', $curr_seq)->max('_seq');
     //     if (is_null($prev_line_seq)) {
     //       // RMB has been executed on first row
     //       $next_seq = (0 + $curr_seq) / 2;
@@ -35,7 +35,7 @@ class SampleOrderLineRepo extends SampleOrderLineBaseRepo
     //       $next_seq = ($prev_line_seq + $curr_seq) / 2;
     //     }
     //   } else if ($positioning === "below") {
-    //     $next_line_seq = SampleOrderLine::where('purchase_order_id', $po_id)->where('_seq_', '>', $curr_seq)->min('_seq_');
+    //     $next_line_seq = SampleOrderLine::where('purchase_order_id', $po_id)->where('_seq', '>', $curr_seq)->min('_seq');
     //     if (is_null($next_line_seq)) {
     //       // RMB has been executed on last row
     //       $next_seq = $curr_seq + 100;
@@ -50,14 +50,14 @@ class SampleOrderLineRepo extends SampleOrderLineBaseRepo
     //   }
     // }
 
-    return ['sample_order_id' => $po_id, '_seq_' => $next_seq];
+    return ['sample_order_id' => $po_id, '_seq' => $next_seq];
   }
 
   public function prepareDuplicate($sourceId)
   {
     $pol = SampleOrderLine::find($sourceId);
-    $next_seq = $this->getNextSequence(SampleOrderLine::class, 'sample_order_id', $pol->sample_order_id, $pol->_seq_, "below");
-    $pol['_seq_'] = $next_seq;
+    $next_seq = $this->getNextSequence(SampleOrderLine::class, 'sample_order_id', $pol->sample_order_id, $pol->_seq, "below");
+    $pol['_seq'] = $next_seq;
 
     return $pol;
   }
@@ -97,8 +97,8 @@ class SampleOrderLineRepo extends SampleOrderLineBaseRepo
     $po_id = $request->query('po_id');
     $i = 1;
 
-    return SampleOrderLine::where('sample_order_id', $po_id)->orderBy('_seq_')->get()->map(function ($item, $key) use (&$i) {
-      $item['_line_no_'] = $i++;
+    return SampleOrderLine::where('sample_order_id', $po_id)->orderBy('_seq')->get()->map(function ($item, $key) use (&$i) {
+      $item['_line_no'] = $i++;
       return $item;
     });
   }
