@@ -2,8 +2,8 @@
 
 namespace Premialabs\Foundation\Traits;
 
-use App\Models\AuditableModel;
-use App\Models\ModelAudit;
+use Premialabs\Foundation\AuditableModel;
+use Premialabs\Foundation\ModelAudit;
 use Illuminate\Support\Facades\Log;
 
 trait ModelAuditorTrait
