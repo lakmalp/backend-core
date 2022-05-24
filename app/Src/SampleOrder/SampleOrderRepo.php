@@ -48,17 +48,4 @@ class SampleOrderRepo extends SampleOrderBaseRepo
     //$rec['status'] = SampleObject::getInitialStatus();
   }
   #endregion
-
-  public function query($request)
-  {
-    $page_no = $request->query('page_no');
-    $page_size = $request->query('page_size');
-    $po_id = $request->query('po_id');
-    $i = 1;
-
-    return SampleOrder::orderBy('_seq')->get()->map(function ($item, $key) use (&$i) {
-      $item['_line_no'] = $i++;
-      return $item;
-    });
-  }
 }

@@ -92,9 +92,38 @@ class SampleOrderBaseRepo extends BaseRepo
     }
   }
 
+  public function query($request)
+  {
+    $page_no = $request->query('page_no');
+    $page_size = $request->query('page_size');
+    $i = 1;
+
+    $data = SampleOrder::orderBy('_seq')
+      ->get()
+      ->map(
+        function ($item, $key) use (&$i) {
+          $item['_line_no'] = $i++;
+          return $item;
+        }
+      );
+
+    return SampleOrderView::collection($data);
+  }
+
   public function showRec($model_id)
   {
-    $object = SampleOrder::findOrFail($model_id);
-    return $object;
+    $i = 1;
+
+    $data = SampleOrder::where('id', $model_id)
+      ->orderBy('_seq')
+      ->with(['user'])
+      ->get()
+      ->map(
+        function ($item, $key) use (&$i) {
+          $item->setAttribute('_line_no', $i++);
+          return $item;
+        }
+      );
+    return SampleOrderWithParentsView::collection($data);
   }
 }
