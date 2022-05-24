@@ -21,7 +21,6 @@ FoundationRoutes::register([
   'ReportUtility',
   'Permission',
   'Role',
-  'User',
   'UserRole',
   'Grant'
 ]);
