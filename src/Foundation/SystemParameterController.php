@@ -12,8 +12,8 @@ class SystemParameterController extends Controller
 {
     public static function routes()
     {
-        Route::get('/systemParameters', [SystemParameterController::class, 'index']);
-        Route::post('/systemParameters', [SystemParameterController::class, 'update']);
+        Route::get('/fnd/systemParameters', [SystemParameterController::class, 'index']);
+        Route::post('/fnd/systemParameters', [SystemParameterController::class, 'update']);
     }
 
     private function _validateValueType($sys_p, $value)

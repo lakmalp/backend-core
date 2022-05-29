@@ -13,9 +13,9 @@ class AuditableModelController extends Controller
 {
     public static function routes()
     {
-        Route::get('/auditableModels/fetch', [AuditableModelController::class, 'fetch']);
-        Route::post('/auditableModels', [AuditableModelController::class, 'create']);
-        Route::post('/auditableModels/{auditableModel}/delete', [AuditableModelController::class, 'delete']);
+        Route::get('/fnd/auditableModels/fetch', [AuditableModelController::class, 'fetch']);
+        Route::post('/fnd/auditableModels', [AuditableModelController::class, 'create']);
+        Route::post('/fnd/auditableModels/{auditableModel}/delete', [AuditableModelController::class, 'delete']);
     }
 
     private function beingAudited()
