@@ -4,6 +4,7 @@ namespace Premialabs\Foundation;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 
 class FoundationRoutes
 {
@@ -15,6 +16,7 @@ class FoundationRoutes
       $routes = $class::routes();
       if (sizeof($routes) > 0) {
         foreach ($routes as $route) {
+          Log::info($route);
           list($end_point, $method, $action) = $route;
           if ($method == "GET") {
             Route::get(Str::camel(Str::plural($object)) . "/" . $end_point, $class . '@' . $action);
