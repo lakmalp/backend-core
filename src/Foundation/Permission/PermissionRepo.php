@@ -23,28 +23,4 @@ class PermissionRepo extends PermissionBaseRepo
   //   //$rec['code'] = Str::upper($rec['code']);
   //   //$rec['status'] = SampleObject::getInitialStatus();
   // }
-
-  public function index($page_no)
-  {
-    // if ($page_no === "n") {
-    $recs =  Permission::orderBy('created_at', 'asc')
-      // ->whereNotIn('code', ['SUPERADMIN'])
-      ->get();
-    // } else {
-    //   $chunk = 15;
-
-    //   $recs =  Role::orderBy('created_at', 'asc')
-    //     ->whereNotIn('code', ['SUPERADMIN'])
-    //     ->skip($chunk * ($page_no - 1))
-    //     ->take($chunk)
-    //     ->get();
-
-    //   $recs->transform(function ($item, $key) use ($chunk, $page_no) {
-    //     $item['_seq'] = ($chunk * ($page_no - 1)) + $key + 1; // +1 is done since $key is index
-    //     return $item;
-    //   });
-    // }
-
-    return $recs;
-  }
 }

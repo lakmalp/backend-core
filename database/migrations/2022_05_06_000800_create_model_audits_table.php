@@ -15,6 +15,7 @@ class CreateModelAuditsTable extends Migration
     {
         Schema::create('model_audits', function (Blueprint $table) {
             $table->id();
+            $table->unsignedMediumInteger('_seq');
             $table->string('model', 50);
             $table->unsignedBigInteger('model_id');
             $table->string('before_json', 2000)->nullable();
