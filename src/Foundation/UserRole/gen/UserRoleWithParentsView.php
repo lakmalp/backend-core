@@ -15,8 +15,10 @@ class UserRoleWithParentsView extends JsonResource
     public function toArray($request)
     {
         return [
-            'user' => new UserView($this->user),
-            'role' => new RoleView($this->role),
+            'user_id' => $this->user_id,
+            'role_id' => $this->role_id,
+            'user' => $this->user,
+            'role' => $this->role,
         ];
     }
 }

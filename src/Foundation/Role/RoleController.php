@@ -7,8 +7,9 @@ use Premialabs\Foundation\Role\gen\Role;
 use Premialabs\Foundation\Utilities;
 use Exception;
 use Illuminate\Http\Request;
+use Premialabs\Foundation\FndDatabaseController;
 
-class RoleController extends Controller
+class RoleController extends FndDatabaseController
 {
   public $repo;
 
@@ -20,40 +21,33 @@ class RoleController extends Controller
   public static function routes(): array
   {
     return [
-      // 'getOpenObjects' => 'getOpenObjects',
-      // 'doSomethingBatch' => 'doSomethingBatch'
-      '' => ['GET', 'index'],
-      '{role}/' => ['GET', 'get']
+      // ----- BEGIN Auto Routes -----
+      // create
+      ['prepareCreate', 'GET', 'prepareCreate'],
+      ['prepareDuplicate', 'GET', 'prepareDuplicate'],
+      ['', 'POST', 'create'],
+
+      // update
+      ['prepareEdit', 'GET', 'prepareEdit'],
+      ['{role}', 'PATCH', 'update'],
+
+      // read
+      ['{role}', 'GET', 'show'],
+      ['', 'GET', 'query'],
+
+      // delete
+      ['{role}', 'DELETE', 'delete'],
+      ['', 'DELETE', 'bulkDelete'],
+      // ----- END Auto Routes -----
+
+      // ----- BEGIN Custom Routes -----
+      // ['list', 'GET', 'list'],
+      // ----- END Custom Routes -----
     ];
   }
 
-  // public function doSomethingBatch(Request $request)
+  // public function list(Request $request)
   // {
-  //   $ids = $request->input('ids');
-  //   $param_1 = $request->input('param_1');
-  //   return Utilities::exec($this, 'doSomethingBatch', [$ids, $param_1]);
+  //   return Utilities::exec($this, 'list', [$request]);
   // }
-
-  // public function getOpenObjects(Request $request)
-  // {
-  //   $id = $request->input('id');
-  //   $param_1 = $request->input('param_1');
-  //   return Utilities::fetch($this, 'getOpenObjects', [$id, $param_1]);
-  // }
-
-  public function index(Request $request)
-  {
-    if ($request->has('search')) {
-      $search = $request->query('search');
-      return Utilities::fetch($this, 'search', [$search]);
-    } else {
-      $page_no = $request->query('page_no');
-      return Utilities::fetch($this, 'index', [$page_no]);
-    }
-  }
-
-  public function get(Role $role)
-  {
-    return Utilities::fetch($this, 'get', [$role]);
-  }
 }

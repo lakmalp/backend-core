@@ -8,8 +8,9 @@ use Premialabs\Foundation\UserRole\gen\UserRole;
 use Premialabs\Foundation\Utilities;
 use Exception;
 use Illuminate\Http\Request;
+use Premialabs\Foundation\FndDatabaseController;
 
-class UserRoleController extends Controller
+class UserRoleController extends FndDatabaseController
 {
   public $repo;
 
@@ -21,34 +22,34 @@ class UserRoleController extends Controller
   public static function routes(): array
   {
     return [
-      // 'getOpenObjects' => 'getOpenObjects',
-      // 'doSomethingBatch' => 'doSomethingBatch'
-      '' => ['GET', 'index'],
+
+      // ----- BEGIN Auto Routes -----
+      // create
+      ['prepareCreate', 'GET', 'prepareCreate'],
+      ['prepareDuplicate', 'GET', 'prepareDuplicate'],
+      ['', 'POST', 'create'],
+
+      // update
+      ['prepareEdit', 'GET', 'prepareEdit'],
+      ['{userRole}', 'PATCH', 'update'],
+
+      // read
+      ['{userRole}', 'GET', 'show'],
+      ['', 'GET', 'query'],
+
+      // delete
+      ['{userRole}', 'DELETE', 'delete'],
+      ['', 'DELETE', 'bulkDelete'],
+      // ----- END Auto Routes -----
+
+      // ----- BEGIN Custom Routes -----
+      // ['list', 'GET', 'list'],
+      // ----- END Custom Routes -----
     ];
   }
 
-  // public function doSomethingBatch(Request $request)
+  // public function list(Request $request)
   // {
-  //   $ids = $request->input('ids');
-  //   $param_1 = $request->input('param_1');
-  //   return Utilities::exec($this, 'doSomethingBatch', [$ids, $param_1]);
+  //   return Utilities::exec($this, 'list', [$request]);
   // }
-
-  // public function getOpenObjects(Request $request)
-  // {
-  //   $id = $request->input('id');
-  //   $param_1 = $request->input('param_1');
-  //   return Utilities::fetch($this, 'getOpenObjects', [$id, $param_1]);
-  // }
-
-  public function index(Request $request)
-  {
-    if ($request->has('search')) {
-      $search = $request->query('search');
-      return Utilities::fetch($this, 'search', [$search]);
-    } else {
-      $page_no = $request->query('page_no');
-      return Utilities::fetch($this, 'index', [$page_no]);
-    }
-  }
 }
