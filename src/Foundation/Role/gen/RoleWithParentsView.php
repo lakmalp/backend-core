@@ -15,6 +15,7 @@ class RoleWithParentsView extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'code' => $this->code,
             'description' => $this->description,
         ];
