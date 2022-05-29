@@ -115,7 +115,7 @@ class PermissionBaseRepo
 
     $data = Permission::where('id', $model_id)
       ->orderBy('_seq')
-      ->with()
+      ->with([])
       ->get()
       ->map(
         function ($item, $key) use (&$i) {
