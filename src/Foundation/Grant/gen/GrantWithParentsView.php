@@ -15,6 +15,7 @@ class GrantWithParentsView extends JsonResource
     public function toArray($request)
     {
         return [
+            'id' => $this->id,
             'role_id' => $this->role_id,
             'permission_id' => $this->permission_id,
             'role' => $this->role,
