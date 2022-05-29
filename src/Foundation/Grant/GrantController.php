@@ -23,11 +23,11 @@ class GrantController extends FndDatabaseController
       // ----- BEGIN Auto Routes -----
       // create
       ['prepareCreate', 'GET', 'prepareCreate'],
-      ['prepareDuplicate', 'GET', 'prepareDuplicate'],
+      ['{grant}/prepareDuplicate', 'GET', 'prepareDuplicate'],
       ['', 'POST', 'create'],
 
       // update
-      ['prepareEdit', 'GET', 'prepareEdit'],
+      ['{grant}/prepareEdit', 'GET', 'prepareEdit'],
       ['{grant}', 'PATCH', 'update'],
 
       // read
