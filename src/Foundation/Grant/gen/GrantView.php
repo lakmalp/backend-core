@@ -19,6 +19,8 @@ class GrantView extends JsonResource
   {
     return [
       'id' => $this->id,
+      '_line_no' => $this->_line_no,
+      '_seq' => $this->_seq,
       'role_id' => $this->role_id,
       'permission_id' => $this->permission_id,
     ];

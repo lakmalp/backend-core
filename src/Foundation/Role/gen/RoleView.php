@@ -19,8 +19,12 @@ class RoleView extends JsonResource
   {
     return [
       'id' => $this->id,
+      '_line_no' => $this->_line_no,
+      '_seq' => $this->_seq,
       'code' => $this->code,
       'description' => $this->description,
+      'updated_at' => $this->updated_at,
+      'created_at' => $this->created_at
     ];
   }
 }
