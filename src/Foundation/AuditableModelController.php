@@ -13,7 +13,7 @@ class AuditableModelController extends Controller
 {
     public static function routes()
     {
-        Route::get('/fnd/auditableModels/fetch', [AuditableModelController::class, 'fetch']);
+        Route::get('/fnd/auditableModels', [AuditableModelController::class, 'index']);
         Route::post('/fnd/auditableModels', [AuditableModelController::class, 'create']);
         Route::post('/fnd/auditableModels/{auditableModel}/delete', [AuditableModelController::class, 'delete']);
     }
@@ -23,7 +23,7 @@ class AuditableModelController extends Controller
         return AuditableModel::all()->toArray();
     }
 
-    public function fetch()
+    public function index()
     {
         return response()->json(['beingAudited' => $this->beingAudited(), 'allToBeAudited' => config('premialabs.eligibleModelsForAuditing', [])], 200);
     }

@@ -23,11 +23,11 @@ class PermissionController extends FndDatabaseController
       // ----- BEGIN Auto Routes -----
       // create
       ['prepareCreate', 'GET', 'prepareCreate'],
-      ['prepareDuplicate', 'GET', 'prepareDuplicate'],
+      ['{permission}/prepareDuplicate', 'GET', 'prepareDuplicate'],
       ['', 'POST', 'create'],
 
       // update
-      ['prepareEdit', 'GET', 'prepareEdit'],
+      ['{permission}/prepareEdit', 'GET', 'prepareEdit'],
       ['{permission}', 'PATCH', 'update'],
 
       // read

@@ -27,9 +27,8 @@ class FndDatabaseController extends Controller
         return Utilities::exec($this, 'createRec', [$request->toArray()]);
     }
 
-    public function prepareDuplicate(Request $request)
+    public function prepareDuplicate($id)
     {
-        $id = $request->query('id');
         return Utilities::fetch($this, 'prepareDuplicate', [$id]);
     }
 

@@ -24,11 +24,11 @@ class RoleController extends FndDatabaseController
       // ----- BEGIN Auto Routes -----
       // create
       ['prepareCreate', 'GET', 'prepareCreate'],
-      ['prepareDuplicate', 'GET', 'prepareDuplicate'],
+      ['{role}/prepareDuplicate', 'GET', 'prepareDuplicate'],
       ['', 'POST', 'create'],
 
       // update
-      ['prepareEdit', 'GET', 'prepareEdit'],
+      ['{role}/prepareEdit', 'GET', 'prepareEdit'],
       ['{role}', 'PATCH', 'update'],
 
       // read
