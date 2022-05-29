@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+
 class CreateTableRoles extends Migration
 {
     /**
@@ -12,15 +13,14 @@ class CreateTableRoles extends Migration
      */
     public function up()
     {
-     Schema::create('roles', function (Blueprint $table) {
-      $table->bigIncrements('id');
-      $table->string('code',20);
-      $table->string('description',100);
-      $table->timestamps();
- 
-});
-
-}
+        Schema::create('roles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedMediumInteger('_seq');
+            $table->string('code', 20);
+            $table->string('description', 100);
+            $table->timestamps();
+        });
+    }
     /**
      * Reverse the migrations.
      *
@@ -28,7 +28,5 @@ class CreateTableRoles extends Migration
      */
     public function down()
     {
-        
     }
 }
-

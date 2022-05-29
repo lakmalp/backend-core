@@ -15,6 +15,7 @@ class CreateUserLoginHistoriesTable extends Migration
     {
         Schema::create('user_login_histories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedMediumInteger('_seq');
             $table->unsignedBigInteger('user_id');
             $table->string('status', 15);
             $table->timestamps();

@@ -15,6 +15,7 @@ class CreateSystemParametersTable extends Migration
     {
         Schema::create('system_parameters', function (Blueprint $table) {
             $table->id();
+            $table->unsignedMediumInteger('_seq');
             $table->string('param_type', 15);
             $table->string('code', 100)->unique();
             $table->string('description', 300);
