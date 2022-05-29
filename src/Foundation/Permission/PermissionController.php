@@ -6,8 +6,9 @@ use App\Http\Controllers\Controller;
 use Premialabs\Foundation\Utilities;
 use Exception;
 use Illuminate\Http\Request;
+use Premialabs\Foundation\FndDatabaseController;
 
-class PermissionController extends Controller
+class PermissionController extends FndDatabaseController
 {
   public $repo;
 
@@ -19,18 +20,34 @@ class PermissionController extends Controller
   public static function routes(): array
   {
     return [
-      '' => ['GET', 'index'],
+
+      // ----- BEGIN Auto Routes -----
+      // create
+      ['prepareCreate', 'GET', 'prepareCreate'],
+      ['prepareDuplicate', 'GET', 'prepareDuplicate'],
+      ['', 'POST', 'create'],
+
+      // update
+      ['prepareEdit', 'GET', 'prepareEdit'],
+      ['{permission}', 'PATCH', 'update'],
+
+      // read
+      ['{permission}', 'GET', 'show'],
+      ['', 'GET', 'query'],
+
+      // delete
+      ['{permission}', 'DELETE', 'delete'],
+      ['', 'DELETE', 'bulkDelete'],
+      // ----- END Auto Routes -----
+
+      // ----- BEGIN Custom Routes -----
+      // ['list', 'GET', 'list'],
+      // ----- END Custom Routes -----
     ];
   }
 
-  public function index(Request $request)
-  {
-    if ($request->has('search')) {
-      $search = $request->query('search');
-      return Utilities::fetch($this, 'search', [$search]);
-    } else {
-      $page_no = $request->query('page_no');
-      return Utilities::fetch($this, 'index', [$page_no]);
-    }
-  }
+  // public function list(Request $request)
+  // {
+  //   return Utilities::exec($this, 'list', [$request]);
+  // }
 }
