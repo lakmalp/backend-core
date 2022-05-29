@@ -15,6 +15,7 @@ class CreateAuditableModelsTable extends Migration
     {
         Schema::create('auditable_models', function (Blueprint $table) {
             $table->id();
+            $table->unsignedMediumInteger('_seq');
             $table->string('model', 50);
             $table->timestamps();
         });

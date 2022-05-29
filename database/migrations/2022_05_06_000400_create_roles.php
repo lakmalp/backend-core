@@ -16,18 +16,21 @@ class CreateRoles extends Migration
     {
         Role::insert([
             [
+                '_seq' => 100000,
                 'code' => '0',
                 'description' => 'Admin',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
+                '_seq' => 100100,
                 'code' => '1',
                 'description' => 'Sales/Draft',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s')
             ],
             [
+                '_seq' => 100200,
                 'code' => '2',
                 'description' => 'External',
                 'created_at' => date('Y-m-d H:i:s'),
