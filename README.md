@@ -2,5 +2,5 @@ A Laravel package that provides authentication, authorization, auditing, and CRU
 
 ### Dependencies
 
-laravel-fortify
-laravel-sanctum
+1. laravel-fortify
+2. laravel-sanctum
