@@ -19,15 +19,15 @@ class FoundationRoutes
           Log::info($route);
           list($end_point, $method, $action) = $route;
           if ($method == "GET") {
-            Route::get(Str::camel(Str::plural($object)) . "/fnd/" . $end_point, $class . '@' . $action);
+            Route::get("fnd/" . Str::camel(Str::plural($object)) . "/" . $end_point, $class . '@' . $action);
           } elseif ($method == "POST") {
-            Route::post(Str::camel(Str::plural($object)) . "/fnd/" . $end_point, $class . '@' . $action);
+            Route::post("fnd/" . Str::camel(Str::plural($object)) . "/" . $end_point, $class . '@' . $action);
           } elseif ($method == "PUT") {
-            Route::put(Str::camel(Str::plural($object)) . "/fnd/" . $end_point, $class . '@' . $action);
+            Route::put("fnd/" . Str::camel(Str::plural($object)) . "/" . $end_point, $class . '@' . $action);
           } elseif ($method == "PATCH") {
-            Route::patch(Str::camel(Str::plural($object)) . "/fnd/" . $end_point, $class . '@' . $action);
+            Route::patch("fnd/" . Str::camel(Str::plural($object)) . "/" . $end_point, $class . '@' . $action);
           } elseif ($method == "DELETE") {
-            Route::delete(Str::camel(Str::plural($object)) . "/fnd/" . $end_point, $class . '@' . $action);
+            Route::delete("fnd/" . Str::camel(Str::plural($object)) . "/" . $end_point, $class . '@' . $action);
           }
         }
       }
