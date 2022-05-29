@@ -21,7 +21,7 @@ class PrintPreviewerController extends Controller
   public static function routes(): array
   {
     return [
-      '' => ['GET', 'handleReport']
+      ['', 'GET', 'handleReport']
       // 'getOpenObjects' => 'getOpenObjects',
       // 'doSomethingBatch' => 'doSomethingBatch'
     ];
