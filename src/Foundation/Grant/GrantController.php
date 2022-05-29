@@ -20,9 +20,6 @@ class GrantController extends FndDatabaseController
   public static function routes(): array
   {
     return [
-      // 'getOpenObjects' => 'getOpenObjects',
-      // 'doSomethingBatch' => 'doSomethingBatch'
-
       // ----- BEGIN Auto Routes -----
       // create
       ['prepareCreate', 'GET', 'prepareCreate'],

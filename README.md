@@ -1,5 +1,6 @@
-# Premialabs backend package
+A Laravel package that provides authentication, authorization, auditing, and CRUD functionality for a Laravel application.
 
-Please refer to release description for installation instructions.
+### Dependencies
 
-Current version 1.4.1
+laravel-fortify
+laravel-sanctum

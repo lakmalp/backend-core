@@ -20,7 +20,6 @@ class PermissionController extends FndDatabaseController
   public static function routes(): array
   {
     return [
-
       // ----- BEGIN Auto Routes -----
       // create
       ['prepareCreate', 'GET', 'prepareCreate'],
