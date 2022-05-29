@@ -12,7 +12,7 @@ class RoleRepo extends RoleBaseRepo
   #region ---------------- Hooks ------------------
   public static function beforeCreateRec(&$rec)
   {
-    $rec['code'] = Str::upper($rec['code']);
+    $rec['_seq'] = Role::max('_seq') + 100;
     //$rec['status'] = SampleObject::getInitialStatus();
   }
 

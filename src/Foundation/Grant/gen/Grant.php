@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Grant extends Model
 {
   protected $fillable = [
+    '_seq',
     'role_id',
     'permission_id',
   ];
