@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
   protected $fillable = [
+    '_seq',
     'code',
     'description',
   ];
