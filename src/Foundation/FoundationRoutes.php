@@ -16,7 +16,6 @@ class FoundationRoutes
       $routes = $class::routes();
       if (sizeof($routes) > 0) {
         foreach ($routes as $route) {
-          Log::info($route);
           list($end_point, $method, $action) = $route;
           if ($method == "GET") {
             Route::get("fnd/" . Str::camel(Str::plural($object)) . "/" . $end_point, $class . '@' . $action);
