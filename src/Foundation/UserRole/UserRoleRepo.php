@@ -73,4 +73,15 @@ class UserRoleRepo extends UserRoleBaseRepo
 
     return $recs;
   }
+
+  public function toggle($user_id, $role_id)
+  {
+    $user_role = UserRole::where(['user_id' => $user_id, 'role_id' => $role_id])->first();
+
+    if (is_null($user_role)) {
+      UserRole::create(['user_id' => $user_id, 'role_id' => $role_id]);
+    } else {
+      $user_role->delete();
+    }
+  }
 }
