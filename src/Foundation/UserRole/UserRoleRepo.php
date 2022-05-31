@@ -14,6 +14,7 @@ class UserRoleRepo extends UserRoleBaseRepo
   #region ---------------- Hooks ------------------
   public static function beforeCreateRec(&$rec)
   {
+    $rec['_seq'] = UserRole::max('_seq') + 100;
     //$rec['code'] = Str::upper($rec['code']);
     //$rec['status'] = SampleObject::getInitialStatus();
   }
