@@ -77,6 +77,9 @@ class UserRoleRepo extends UserRoleBaseRepo
   public function toggle($user_id, $role_id)
   {
     $_seq_max = UserRole::max('_seq');
+    Log::info('--------++-----');
+    Log::info($_seq_max);
+    Log::info('--------++-----');
     $_seq = ($_seq_max === 0 ? 100000 : $_seq_max + 100);
     $user_role = UserRole::where(['user_id' => $user_id, 'role_id' => $role_id])->first();
 
