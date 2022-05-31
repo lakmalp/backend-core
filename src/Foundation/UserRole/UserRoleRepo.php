@@ -14,7 +14,6 @@ class UserRoleRepo extends UserRoleBaseRepo
   #region ---------------- Hooks ------------------
   public static function beforeCreateRec(&$rec)
   {
-    $rec['_seq'] = UserRole::max('_seq') + 100;
     //$rec['code'] = Str::upper($rec['code']);
     //$rec['status'] = SampleObject::getInitialStatus();
   }
@@ -77,10 +76,11 @@ class UserRoleRepo extends UserRoleBaseRepo
 
   public function toggle($user_id, $role_id)
   {
+    $_seq = UserRole::max('_seq') + 100;
     $user_role = UserRole::where(['user_id' => $user_id, 'role_id' => $role_id])->first();
 
     if (!$user_role) {
-      UserRole::create(['user_id' => $user_id, 'role_id' => $role_id]);
+      UserRole::create(['_seq' => $_seq, 'user_id' => $user_id, 'role_id' => $role_id]);
     } else {
       $user_role->delete();
     }
