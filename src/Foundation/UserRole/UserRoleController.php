@@ -29,9 +29,9 @@ class UserRoleController extends FndDatabaseController
       ['', 'POST', 'create'],
 
       // update
+      ['toggle', 'PATCH', 'toggle'],
       ['{userRole}/prepareEdit', 'GET', 'prepareEdit'],
       ['{userRole}', 'PATCH', 'update'],
-      ['/toggle', 'PATCH', 'toggle'],
 
       // read
       ['{userRole}', 'GET', 'show'],
