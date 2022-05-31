@@ -29,6 +29,7 @@ class UserRoleController extends FndDatabaseController
       ['', 'POST', 'create'],
 
       // update
+      ['toggle', 'PATCH', 'toggle'],
       ['{userRole}/prepareEdit', 'GET', 'prepareEdit'],
       ['{userRole}', 'PATCH', 'update'],
 
@@ -47,8 +48,10 @@ class UserRoleController extends FndDatabaseController
     ];
   }
 
-  // public function list(Request $request)
-  // {
-  //   return Utilities::exec($this, 'list', [$request]);
-  // }
+  public function toggle(Request $request)
+  {
+    $user_id = $request->input('user_id');
+    $role_id = $request->input('role_id');
+    return Utilities::exec($this, 'list', [$user_id, $role_id]);
+  }
 }
