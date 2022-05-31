@@ -52,6 +52,6 @@ class UserRoleController extends FndDatabaseController
   {
     $user_id = $request->input('user_id');
     $role_id = $request->input('role_id');
-    return Utilities::exec($this, 'list', [$user_id, $role_id]);
+    return Utilities::exec($this, 'toggle', [$user_id, $role_id]);
   }
 }
