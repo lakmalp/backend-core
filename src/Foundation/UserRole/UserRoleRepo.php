@@ -81,9 +81,10 @@ class UserRoleRepo extends UserRoleBaseRepo
     $user_role = UserRole::where(['user_id' => $user_id, 'role_id' => $role_id])->first();
 
     if (!$user_role) {
-      UserRole::create(['_seq' => $_seq, 'user_id' => $user_id, 'role_id' => $role_id]);
+      return UserRole::create(['_seq' => $_seq, 'user_id' => $user_id, 'role_id' => $role_id]);
     } else {
       $user_role->delete();
+      return null;
     }
   }
 }
