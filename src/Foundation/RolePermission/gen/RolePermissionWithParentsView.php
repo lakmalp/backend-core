@@ -22,6 +22,8 @@ class RolePermissionWithParentsView extends JsonResource
             'permission_id' => $this->permission_id,
             'role' => $this->role,
             'permission' => $this->permission,
+            'updated_at' => $this->updated_at,
+            'created_at' => $this->created_at
         ];
     }
 }
