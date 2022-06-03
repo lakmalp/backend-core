@@ -24,32 +24,32 @@ Fetch all _System Parameters_
 Creates a new _System Parameter_
 
 ### Model specific routes
-Below is a sample of routes being exposed for _Grant_ model.
-#### POST: api/fnd/grants
-Creates a new _Grant_ model.
+Below is a sample of routes being exposed for _RolePermission_ model.
+#### POST: api/fnd/rolePermissions
+Creates a new _RolePermission_ model.
 
-#### GET: api/fnd/grants
-Fetch all of _Grant_ models. The response is governed by `App\Src\Grant\gen\GrantView`.
+#### GET: api/fnd/rolePermissions
+Fetch all of _RolePermission_ models. The response is governed by `App\Src\RolePermission\gen\RolePermissionView`.
 
-#### DELETE: api/fnd/grants
-Bulk deletion of multiple _Grant_ models.
+#### DELETE: api/fnd/rolePermissions
+Bulk deletion of multiple _RolePermission_ models.
 
-#### GET: api/fnd/grants/prepareCreate
-Returns a response with default values when a new _Grant_ model is about to create.
+#### GET: api/fnd/rolePermissions/prepareCreate
+Returns a response with default values when a new _RolePermission_ model is about to create.
 
-#### GET: api/fnd/grants/{grant}/prepareEdit
+#### GET: api/fnd/rolePermissions/{rolePermission}/prepareEdit
 Returns a response with object along with other details supportive for editing.
 
-#### GET: api/fnd/grants/{grant}/prepareDuplicate
-Returns a response with default values along with copied values from the source object when a new _Grant_ model is about to duplicate.
+#### GET: api/fnd/rolePermissions/{rolePermission}/prepareDuplicate
+Returns a response with default values along with copied values from the source object when a new _RolePermission_ model is about to duplicate.
 
-#### PATCH: api/fnd/grants/{grant}
-Update existing _Grant_ model.
+#### PATCH: api/fnd/rolePermissions/{rolePermission}
+Update existing _RolePermission_ model.
 
-#### GET: api/fnd/grants/{grant}
-Fetch the specified _Grant_ model. The response is governed by `App\Src\Grant\gen\GrantWithParentsView`.
+#### GET: api/fnd/rolePermissions/{rolePermission}
+Fetch the specified _RolePermission_ model. The response is governed by `App\Src\RolePermission\gen\RolePermissionWithParentsView`.
 
-#### DELETE: api/fnd/grants/{grant}
-Deletes specified _Grant_ model.
+#### DELETE: api/fnd/rolePermissions/{rolePermission}
+Deletes specified _RolePermission_ model.
 
 Routes for _Permission_, _Role_, and _UserRole_ will be generated as given above.

@@ -1,19 +1,19 @@
 <?php
 
-namespace Premialabs\Foundation\Grant\gen;
+namespace Premialabs\Foundation\RolePermission\gen;
 
 use Premialabs\Foundation\Permission\gen\Permission;
 use Premialabs\Foundation\Role\gen\Role;
 use Illuminate\Database\Eloquent\Model;
 
-class Grant extends Model
+class RolePermission extends Model
 {
   protected $fillable = [
     '_seq',
     'role_id',
     'permission_id',
   ];
-  protected $table = 'grants';
+  protected $table = 'role_permissions';
 
 
   public function role()

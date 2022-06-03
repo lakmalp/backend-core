@@ -2,7 +2,7 @@
 
 namespace Premialabs\Foundation\Role\gen;
 
-use Premialabs\Foundation\Grant\gen\Grant;
+use Premialabs\Foundation\RolePermission\gen\RolePermission;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
@@ -14,8 +14,8 @@ class Role extends Model
   ];
   protected $table = 'roles';
 
-  public function grants()
+  public function rolePermissions()
   {
-    return $this->hasMany(Grant::class);
+    return $this->hasMany(RolePermission::class);
   }
 }

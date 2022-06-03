@@ -28,7 +28,7 @@
   ],
   "ChildDefinitions": [
     {
-      "colHasMany": "Grant"
+      "colHasMany": "RolePermission"
     }
   ]
 }

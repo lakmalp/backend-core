@@ -1,10 +1,10 @@
 <?php
 
-namespace Premialabs\Foundation\Grant\gen;
+namespace Premialabs\Foundation\RolePermission\gen;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GrantWithParentsView extends JsonResource
+class RolePermissionWithParentsView extends JsonResource
 {
     /**
      * Transform the resource into an array.

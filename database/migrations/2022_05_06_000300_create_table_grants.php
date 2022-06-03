@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableGrants extends Migration
+class CreateTableRolePermissions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTableGrants extends Migration
      */
     public function up()
     {
-        Schema::create('grants', function (Blueprint $table) {
+        Schema::create('rolePermissions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedMediumInteger('_seq');
             $table->unsignedBigInteger('role_id');
