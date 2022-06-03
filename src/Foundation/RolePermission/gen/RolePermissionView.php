@@ -23,6 +23,8 @@ class RolePermissionView extends JsonResource
       '_seq' => $this->_seq,
       'role_id' => $this->role_id,
       'permission_id' => $this->permission_id,
+      'updated_at' => $this->updated_at,
+      'created_at' => $this->created_at
     ];
   }
 }
