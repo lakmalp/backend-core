@@ -22,5 +22,5 @@ FoundationRoutes::register([
   'Permission',
   'Role',
   'UserRole',
-  'Grant'
+  'RolePermission'
 ]);

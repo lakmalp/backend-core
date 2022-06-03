@@ -1,6 +1,6 @@
 <?php
 
-namespace Premialabs\Foundation\Grant;
+namespace Premialabs\Foundation\RolePermission;
 
 use App\Http\Controllers\Controller;
 use Premialabs\Foundation\Utilities;
@@ -8,13 +8,13 @@ use Exception;
 use Illuminate\Http\Request;
 use Premialabs\Foundation\FndDatabaseController;
 
-class GrantController extends FndDatabaseController
+class RolePermissionController extends FndDatabaseController
 {
   public $repo;
 
   public function __construct()
   {
-    $this->repo = new GrantRepo();
+    $this->repo = new RolePermissionRepo();
   }
 
   public static function routes(): array
@@ -23,19 +23,19 @@ class GrantController extends FndDatabaseController
       // ----- BEGIN Auto Routes -----
       // create
       ['prepareCreate', 'GET', 'prepareCreate'],
-      ['{grant}/prepareDuplicate', 'GET', 'prepareDuplicate'],
+      ['{rolePermission}/prepareDuplicate', 'GET', 'prepareDuplicate'],
       ['', 'POST', 'create'],
 
       // update
-      ['{grant}/prepareEdit', 'GET', 'prepareEdit'],
-      ['{grant}', 'PATCH', 'update'],
+      ['{rolePermission}/prepareEdit', 'GET', 'prepareEdit'],
+      ['{rolePermission}', 'PATCH', 'update'],
 
       // read
-      ['{grant}', 'GET', 'show'],
+      ['{rolePermission}', 'GET', 'show'],
       ['', 'GET', 'query'],
 
       // delete
-      ['{grant}', 'DELETE', 'delete'],
+      ['{rolePermission}', 'DELETE', 'delete'],
       ['', 'DELETE', 'bulkDelete'],
       // ----- END Auto Routes -----
 

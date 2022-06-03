@@ -1,8 +1,8 @@
 <?php
 
-namespace Premialabs\Foundation\Grant\gen;
+namespace Premialabs\Foundation\RolePermission\gen;
 
-class GrantFieldValidator
+class RolePermissionFieldValidator
 {
   public static function getCommonRules()
   {

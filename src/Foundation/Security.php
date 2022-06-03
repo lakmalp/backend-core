@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 
 class Security
 {
-  private $grants = [];
+  private $rolePermissions = [];
   private $navigator = [];
 
   // private function _populateNavigator()
@@ -26,25 +26,25 @@ class Security
   //               'name' => 'project.create',
   //               'text' => 'Create New Project',
   //               'path' => '/projects/create',
-  //               'grant' => 'project.create'
+  //               'rolePermission' => 'project.create'
   //             ],
   //             [
   //               'name' => 'project.view.current',
   //               'text' => 'Current Projects',
   //               'path' => '/projects/current',
-  //               'grant' => 'project.view.current'
+  //               'rolePermission' => 'project.view.current'
   //             ],
   //             [
   //               'name' => 'project.view.completed',
   //               'text' => 'Completed Projects',
   //               'path' => '/projects/completed',
-  //               'grant' => 'project.view.completed'
+  //               'rolePermission' => 'project.view.completed'
   //             ],
   //             [
   //               'name' => 'project.view.all',
   //               'text' => 'All Projects',
   //               'path' => '/projects/all',
-  //               'grant' => 'project.view.all'
+  //               'rolePermission' => 'project.view.all'
   //             ]
   //           ]
   //         ],
@@ -57,13 +57,13 @@ class Security
   //               'name' => 'user.create',
   //               'text' => 'Create New User',
   //               'path' => '/users/create',
-  //               'grant' => 'user.create'
+  //               'rolePermission' => 'user.create'
   //             ],
   //             [
   //               'name' => 'user.view.all',
   //               'text' => 'View All',
   //               'path' => '/users/all',
-  //               'grant' => 'user.view.all'
+  //               'rolePermission' => 'user.view.all'
   //             ]
   //           ]
   //         ],
@@ -76,25 +76,25 @@ class Security
   //               'name' => 'project.create',
   //               'text' => 'Create New Project',
   //               'path' => '/projects/create',
-  //               'grant' => 'project.create'
+  //               'rolePermission' => 'project.create'
   //             ],
   //             [
   //               'name' => 'project.view.current',
   //               'text' => 'Current Projects',
   //               'path' => '/projects/current',
-  //               'grant' => 'project.view.current'
+  //               'rolePermission' => 'project.view.current'
   //             ],
   //             [
   //               'name' => 'project.view.completed',
   //               'text' => 'Completed Projects',
   //               'path' => '/projects/completed',
-  //               'grant' => 'project.view.completed'
+  //               'rolePermission' => 'project.view.completed'
   //             ],
   //             [
   //               'name' => 'project.view.all',
   //               'text' => 'All Projects',
   //               'path' => '/projects/all',
-  //               'grant' => 'project.view.all'
+  //               'rolePermission' => 'project.view.all'
   //             ]
   //           ]
   //         ],
@@ -107,13 +107,13 @@ class Security
   //               'name' => 'account.settings',
   //               'text' => 'Settings',
   //               'path' => '/settings',
-  //               'grant' => 'settings'
+  //               'rolePermission' => 'settings'
   //             ],
   //             [
   //               'name' => 'account.viewUserSessions',
   //               'text' => 'User session history',
   //               'path' => '/viewUserSessions',
-  //               'grant' => 'auth.viewUserSessions'
+  //               'rolePermission' => 'auth.viewUserSessions'
   //             ]
   //           ]
   //         ]
@@ -137,7 +137,7 @@ class Security
   //         ];
   //       }
   //     } else {
-  //       if (in_array($nav_item['grant'], $this->grants)) {
+  //       if (in_array($nav_item['rolePermission'], $this->rolePermissions)) {
   //         $navigator[] = [
   //           'name' => $nav_item['name'],
   //           'text' => $nav_item['text'],
@@ -162,8 +162,8 @@ class Security
 
   // public function fetchClientData()
   // {
-  //   foreach (auth()->user()->grants as $grant) {
-  //     $this->grants[] = $grant['code'];
+  //   foreach (auth()->user()->rolePermissions as $rolePermission) {
+  //     $this->rolePermissions[] = $rolePermission['code'];
   //   }
 
   //   return [
@@ -173,13 +173,13 @@ class Security
 
   // public function getInfo()
   // {
-  //   foreach (auth()->user()->grants as $grant) {
-  //     $this->grants[] = $grant['code'];
+  //   foreach (auth()->user()->rolePermissions as $rolePermission) {
+  //     $this->rolePermissions[] = $rolePermission['code'];
   //   }
 
   //   return [
   //     'user' => auth()->user(),
-  //     'permissions' => $this->grants
+  //     'permissions' => $this->rolePermissions
   //   ];
   // }
 }
