@@ -60,29 +60,29 @@ class RolePermissionRepo extends RolePermissionBaseRepo
   //   return "xxxxx";
   // }
 
-  #endregion
+  #
 
   public function index($page_no)
   {
-    // if ($page_no === "n") {
     $recs =  RolePermission::orderBy('created_at', 'asc')
-      // ->whereNotIn('code', ['SUPERADMIN'])
       ->get();
-    // } else {
-    //   $chunk = 15;
-
-    //   $recs =  Role::orderBy('created_at', 'asc')
-    //     ->whereNotIn('code', ['SUPERADMIN'])
-    //     ->skip($chunk * ($page_no - 1))
-    //     ->take($chunk)
-    //     ->get();
-
-    //   $recs->transform(function ($item, $key) use ($chunk, $page_no) {
-    //     $item['_seq'] = ($chunk * ($page_no - 1)) + $key + 1; // +1 is done since $key is index
-    //     return $item;
-    //   });
-    // }
 
     return $recs;
+  }
+
+  public function toggle($permission_id, $role_id)
+  {
+    $_seq_max = RolePermission::max('_seq');
+    $_seq = (is_null($_seq_max) ? 100000 : $_seq_max + 100);
+    $role_permission = RolePermission::where([
+      'permission_id' => $permission_id, 'role_id' => $role_id
+    ])->first();
+
+    if (!$role_permission) {
+      return RolePermission::create(['_seq' => $_seq, 'permission_id' => $permission_id, 'role_id' => $role_id]);
+    } else {
+      $role_permission->delete();
+      return null;
+    }
   }
 }

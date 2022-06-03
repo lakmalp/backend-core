@@ -27,6 +27,7 @@ class RolePermissionController extends FndDatabaseController
       ['', 'POST', 'create'],
 
       // update
+      ['toggle', 'PATCH', 'toggle'],
       ['{rolePermission}/prepareEdit', 'GET', 'prepareEdit'],
       ['{rolePermission}', 'PATCH', 'update'],
 
@@ -45,8 +46,10 @@ class RolePermissionController extends FndDatabaseController
     ];
   }
 
-  // public function list(Request $request)
-  // {
-  //   return Utilities::exec($this, 'list', [$request]);
-  // }
+  public function toggle(Request $request)
+  {
+    $permission_id = $request->input('permission_id');
+    $role_id = $request->input('role_id');
+    return Utilities::exec($this, 'toggle', [$permission_id, $role_id]);
+  }
 }
