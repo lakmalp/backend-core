@@ -77,13 +77,14 @@ class UserRoleRepo extends UserRoleBaseRepo
   public function toggle($user_id, $role_id)
   {
     $_seq_max = UserRole::max('_seq');
-    $_seq = ($_seq_max === 0 ? 100000 : $_seq_max + 100);
+    $_seq = (is_null($_seq_max) ? 100000 : $_seq_max + 100);
     $user_role = UserRole::where(['user_id' => $user_id, 'role_id' => $role_id])->first();
 
     if (!$user_role) {
-      UserRole::create(['_seq' => $_seq, 'user_id' => $user_id, 'role_id' => $role_id]);
+      return UserRole::create(['_seq' => $_seq, 'user_id' => $user_id, 'role_id' => $role_id]);
     } else {
       $user_role->delete();
+      return null;
     }
   }
 }

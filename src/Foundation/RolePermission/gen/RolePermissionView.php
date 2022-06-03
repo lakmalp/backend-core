@@ -1,11 +1,11 @@
 <?php
 
-namespace Premialabs\Foundation\Grant\gen;
+namespace Premialabs\Foundation\RolePermission\gen;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GrantView extends JsonResource
+class RolePermissionView extends JsonResource
 {
   /**
    * Transform the resource into an array.
@@ -23,6 +23,8 @@ class GrantView extends JsonResource
       '_seq' => $this->_seq,
       'role_id' => $this->role_id,
       'permission_id' => $this->permission_id,
+      'updated_at' => $this->updated_at,
+      'created_at' => $this->created_at
     ];
   }
 }

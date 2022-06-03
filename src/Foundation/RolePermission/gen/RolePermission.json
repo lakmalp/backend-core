@@ -1,0 +1,30 @@
+{
+  "ModelName": "RolePermission",
+  "TableName": "role_permissions",
+  "ManytoMany": "False",
+  "Utillity": "False",
+  "ColDefinitions": [
+    {
+      "colName": "role_id",
+      "colDataType": "unsignedBigInteger",
+      "colLength": null,
+      "colNotNull": "True",
+      "colModel": "Role"
+    },
+    {
+      "colName": "permission_id",
+      "colDataType": "unsignedBigInteger",
+      "colLength": null,
+      "colNotNull": "True",
+      "colModel": "Permission"
+    },
+    {
+      "colName": null,
+      "colDataType": null,
+      "colLength": null,
+      "colNotNull": null,
+      "colModel": null
+    }
+  ],
+  "ChildDefinitions": []
+}

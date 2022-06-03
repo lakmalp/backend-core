@@ -1,8 +1,8 @@
 <?php
 
-namespace Premialabs\Foundation\Grant\gen;
+namespace Premialabs\Foundation\RolePermission\gen;
 
-use Premialabs\Foundation\Grant\gen\GrantFieldValidator;
+use Premialabs\Foundation\RolePermission\gen\RolePermissionFieldValidator;
 use Premialabs\Foundation\Utilities;
 use Premialabs\Foundation\Traits\StatusTrait;
 use Illuminate\Support\Facades\Log;
@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Exception;
 use Premialabs\Foundation\Traits\ModelAuditorTrait;
 
-class GrantBaseRepo
+class RolePermissionBaseRepo
 {
   use ModelAuditorTrait;
 
@@ -21,7 +21,7 @@ class GrantBaseRepo
     }
     $validator = Validator::make(
       $rec,
-      GrantFieldValidator::getCreateRules()
+      RolePermissionFieldValidator::getCreateRules()
     );
     if ($validator->fails()) {
       throw new Exception($validator->errors());
@@ -29,8 +29,8 @@ class GrantBaseRepo
     if (method_exists($this, 'customValidator')) {
       $this->customValidator($rec, 'CRE');
     }
-    $object =  Grant::create($rec);
-    if ($this->modelAuditable('Grant')) {
+    $object =  RolePermission::create($rec);
+    if ($this->modelAuditable('RolePermission')) {
       $this->auditAfterCreate($object);
     }
 
@@ -44,7 +44,7 @@ class GrantBaseRepo
 
   public function updateRec($model_id, array $rec)
   {
-    $object = Grant::findOrFail($model_id);
+    $object = RolePermission::findOrFail($model_id);
     if (method_exists($this, 'beforeUpdateRec')) {
       $this->beforeUpdateRec($rec, $object);
     }
@@ -55,7 +55,7 @@ class GrantBaseRepo
     Utilities::hydrate($object, $rec);
     $validator = Validator::make(
       $rec,
-      GrantFieldValidator::getUpdateRules($model_id)
+      RolePermissionFieldValidator::getUpdateRules($model_id)
     );
     if ($validator->fails()) {
       throw new Exception($validator->errors());
@@ -63,7 +63,7 @@ class GrantBaseRepo
     if (method_exists($this, 'customValidator')) {
       $this->customValidator($rec, 'UPD');
     }
-    $_is_auditable = $this->modelAuditable('Grant');
+    $_is_auditable = $this->modelAuditable('RolePermission');
     if ($_is_auditable) {
       $_beofre_id = $this->auditBeforeUpdate($model_id, $object);
     }
@@ -80,7 +80,7 @@ class GrantBaseRepo
 
   public function deleteRec($model_id)
   {
-    $object = Grant::findOrFail($model_id);
+    $object = RolePermission::findOrFail($model_id);
 
     if (method_exists($this, 'beforeDeleteRec')) {
       $this->beforeDeleteRec($object);
@@ -97,7 +97,7 @@ class GrantBaseRepo
     $page_size = $request->query('page_size');
     $i = 1;
 
-    $data = Grant::orderBy('_seq')
+    $data = RolePermission::orderBy('_seq')
       ->get()
       ->map(
         function ($item, $key) use (&$i) {
@@ -106,14 +106,14 @@ class GrantBaseRepo
         }
       );
 
-    return GrantView::collection($data);
+    return RolePermissionView::collection($data);
   }
 
   public function showRec($model_id)
   {
     $i = 1;
 
-    $data = Grant::where('id', $model_id)
+    $data = RolePermission::where('id', $model_id)
       ->orderBy('_seq')
       ->with(['role', 'permission'])
       ->get()
@@ -123,6 +123,6 @@ class GrantBaseRepo
           return $item;
         }
       );
-    return GrantWithParentsView::collection($data);
+    return RolePermissionWithParentsView::collection($data);
   }
 }
