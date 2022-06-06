@@ -39,7 +39,7 @@ class SystemParameterController extends Controller
         if ($is_super) {
             $params = SystemParameter::get();
         } else {
-            $params = SystemParameter::get('type', 'USER');
+            $params = SystemParameter::get('param_type', 'USER');
         }
         return $params;
     }
