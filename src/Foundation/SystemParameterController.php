@@ -41,7 +41,7 @@ class SystemParameterController extends Controller
         } else {
             $recs = SystemParameter::where('param_type', 'USER')->get();
         }
-        return $recs;
+        return response()->json($recs, 200);
     }
 
     public function getValue(SystemParameter $systemParameter)
