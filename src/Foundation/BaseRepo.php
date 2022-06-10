@@ -65,6 +65,12 @@ abstract class BaseRepo
     return $object;
   }
 
+  /**
+   * This should be overridden to add custom validation logic other than field auto-validations.
+   *
+   * @param array  $rec  This is an array with fields that can be used for validation.
+   * @param string $method can be of 'CRE' or 'UPD'
+   */
   public static function customValidator($rec, $method)
   {
     return;
