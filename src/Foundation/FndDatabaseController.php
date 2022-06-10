@@ -12,10 +12,14 @@ class FndDatabaseController extends Controller
      * Model related routes
      *
      * `['<END_POINT>', '<METHOD>', '<CONTROLLER_METHOD>']`
-     * <METHOD> can be any of GET, PUT, PATCH, DELETE, and POST
      * 
-     * e.g. ['prepareCreate', 'GET', 'prepareCreate'] will generate a GET route: '/model/prepareCreate' and 
-     * the request will be forwarded to prepareCreate method of the controller with \Illuminate\Http\Request type param.
+     * `<METHOD>` can be any of GET, PUT, PATCH, DELETE, and POST
+     * 
+     * e.g. `['prepareCreate', 'GET', 'prepareCreate']` will generate a GET route: `/model/prepareCreate` and 
+     * 
+     * the request will be forwarded to prepareCreate method of the controller with 
+     * 
+     * `\Illuminate\Http\Request` type param.
      * 
      * _Note_: Pay attention to specificity
      *
