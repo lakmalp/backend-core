@@ -25,7 +25,24 @@ class FndDatabaseController extends Controller
      */
     public static function routes(): array
     {
-        return [];
+        return [
+            // create
+            ['prepareCreate', 'GET', 'prepareCreate'],
+            ['prepareDuplicate', 'GET', 'prepareDuplicate'],
+            ['', 'POST', 'create'],
+
+            // update
+            ['prepareEdit', 'GET', 'prepareEdit'],
+            ['{site}', 'PATCH', 'update'],
+
+            // read
+            ['{site}', 'GET', 'show'],
+            ['', 'GET', 'query'],
+
+            // delete
+            ['{site}', 'DELETE', 'delete'],
+            ['', 'DELETE', 'bulkDelete'],
+        ];
     }
 
     public function show($model)
