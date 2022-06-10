@@ -37,11 +37,11 @@ class SystemParameterController extends Controller
     {
         $is_super = (auth()->user()->name === 'Superadmin');
         if ($is_super) {
-            $params = SystemParameter::get();
+            $recs = SystemParameter::get();
         } else {
-            $params = SystemParameter::get('param_type', 'USER');
+            $recs = SystemParameter::where('param_type', 'USER')->get();
         }
-        return $params;
+        return response()->json(["status" => "success", "data" => $recs], 200);
     }
 
     public function getValue(SystemParameter $systemParameter)
