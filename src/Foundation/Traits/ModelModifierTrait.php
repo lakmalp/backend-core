@@ -11,12 +11,11 @@ trait ModelModifierTrait
     if (!is_null(auth()->user())) {
       static::creating(function ($model) {
         $model->created_by_user_ref = auth()->user()->id;
-        return $model;
+        $model->last_modified_by_user_ref = auth()->user()->id;
       });
 
       static::updating(function ($model) {
         $model->last_modified_by_user_ref = auth()->user()->id;
-        return $model;
       });
     }
   }
