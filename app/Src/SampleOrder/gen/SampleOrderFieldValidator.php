@@ -11,8 +11,8 @@ class SampleOrderFieldValidator
       'created_date' => ['required', 'date'],
       'delivery_date' => ['required', 'date'],
       'status' => ['required'],
-      'created_by_id' => ['numeric', 'nullable', 'exists:users,id'],
-      'last_modified_by_id' => ['numeric', 'nullable', 'exists:users,id']
+      'created_by_user_ref' => ['numeric', 'nullable', 'exists:users,id'],
+      'last_modified_by_user_ref' => ['numeric', 'nullable', 'exists:users,id']
 
     ];
   }

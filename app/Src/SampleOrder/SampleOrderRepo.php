@@ -24,7 +24,7 @@ class SampleOrderRepo extends SampleOrderBaseRepo
 
   public static function beforeCreateRec(&$rec)
   {
-    $rec['last_modified_by_id'] = auth()->user()->id;
+    $rec['last_modified_by_user_ref'] = auth()->user()->id;
   }
 
   public function prepareEdit(SampleOrder $sampleOrder)

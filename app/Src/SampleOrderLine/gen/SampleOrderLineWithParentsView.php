@@ -23,9 +23,9 @@ class SampleOrderLineWithParentsView extends JsonResource
             'sample_order' => $this->sample_order,
             'sample_order_id' => $this->sample_order_id,
             'created_by' => $this->created_by,
-            'created_by_id' => $this->created_by_id,
+            'created_by_user_ref' => $this->created_by_user_ref,
             'last_modified_by' => $this->last_modified_by,
-            'last_modified_by_id' => $this->last_modified_by_id
+            'last_modified_by_user_ref' => $this->last_modified_by_user_ref
         ];
     }
 }

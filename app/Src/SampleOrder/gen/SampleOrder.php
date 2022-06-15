@@ -18,18 +18,18 @@ class SampleOrder extends FndModel
     'created_date',
     'delivery_date',
     'status',
-    'created_by_id',
-    'last_modified_by_id',
+    'created_by_user_ref',
+    'last_modified_by_user_ref',
   ];
   protected $table = 'purchase_orders';
 
 
   public function created_by()
   {
-    return $this->belongsTo(User::class, 'created_by_id');
+    return $this->belongsTo(User::class, 'created_by_user_ref');
   }
   public function last_modified_by()
   {
-    return $this->belongsTo(User::class, 'last_modified_by_id');
+    return $this->belongsTo(User::class, 'last_modified_by_user_ref');
   }
 }

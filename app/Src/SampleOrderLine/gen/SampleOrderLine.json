@@ -53,7 +53,7 @@
       "colParentAlias": null
     },
     {
-      "colName": "created_by_id",
+      "colName": "created_by_user_ref",
       "colDataType": "unsignedBigInteger",
       "colLength": null,
       "colNotNull": null,
@@ -61,7 +61,7 @@
       "colParentAlias": "created_by"
     },
     {
-      "colName": "last_modified_by_id",
+      "colName": "last_modified_by_user_ref",
       "colDataType": "unsignedBigInteger",
       "colLength": null,
       "colNotNull": null,
