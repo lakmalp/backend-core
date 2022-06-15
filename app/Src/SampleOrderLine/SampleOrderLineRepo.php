@@ -64,7 +64,7 @@ class SampleOrderLineRepo extends SampleOrderLineBaseRepo
 
   public static function beforeCreateRec(&$rec)
   {
-    $rec['last_modified_by_id'] = auth()->user()->id;
+    $rec['last_modified_by_user_ref'] = auth()->user()->id;
     $rec['created_date'] = Carbon::now()->format("Y-m-d");
     $rec['status'] = "Planned";
   }

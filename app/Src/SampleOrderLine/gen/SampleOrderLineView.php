@@ -23,8 +23,8 @@ class SampleOrderLineView extends JsonResource
       'delivery_date' => $this->delivery_date,
       'status' => $this->status,
       'sample_order_id' => $this->sample_order_id,
-      'created_by_id' => $this->created_by_id,
-      'last_modified_by_id' => $this->last_modified_by_id
+      'created_by_user_ref' => $this->created_by_user_ref,
+      'last_modified_by_user_ref' => $this->last_modified_by_user_ref
     ];
   }
 }

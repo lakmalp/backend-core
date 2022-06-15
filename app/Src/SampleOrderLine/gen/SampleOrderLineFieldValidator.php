@@ -13,8 +13,8 @@ class SampleOrderLineFieldValidator
       'delivery_date' => ['required', 'date'],
       'status' => ['required', 'max:30'],
       'sample_order_id' => ['numeric', 'nullable', 'exists:sample_orders,id'],
-      'created_by_id' => ['numeric', 'nullable', 'exists:users,id'],
-      'last_modified_by_id' => ['numeric', 'nullable', 'exists:users,id']
+      'created_by_user_ref' => ['numeric', 'nullable', 'exists:users,id'],
+      'last_modified_by_user_ref' => ['numeric', 'nullable', 'exists:users,id']
 
     ];
   }
