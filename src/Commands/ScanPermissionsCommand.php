@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Premialabs\Foundation\Permission\PermissionRepo;
+use Premialabs\Foundation\Permission\gen\Permission;
 
 class ScanPermissionsCommand extends Command
 {
@@ -32,15 +33,20 @@ class ScanPermissionsCommand extends Command
      */
     public function handle()
     {
-        array_map(function ($fileName) {
+        $_seq_max = Permission::max('_seq');
+        $_seq = (is_null($_seq_max) ? 99900 : $_seq_max + 100);
+
+        array_map(function ($fileName) use (&$_seq) {
             $fileName = $fileName->getRelativePathName();
             if (Str::contains($fileName, "Controller.php")) {
                 $className = "App\\Src\\" . $fileName;
                 $className = Str::replace(".php", "", $className);
                 $routes = $className::routes();
                 foreach ($routes as $route) {
+                    $_seq = $_seq + 100;
                     list($endpoint, $method, $action) = $route;
                     (new PermissionRepo)->createRec([
+                        '_seq' => $_seq,
                         'endpoint' => $endpoint,
                         'method' => $method,
                         'action' => $action
