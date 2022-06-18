@@ -8,8 +8,9 @@ class PermissionFieldValidator
   {
     return [
 
-      'code' => ['required'],
-      'description' => ['required'],
+      'endpoint' => ['required'],
+      'method' => ['required'],
+      'action' => ['required'],
 
     ];
   }

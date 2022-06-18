@@ -12,8 +12,9 @@ class Permission extends Model
 {
   protected $fillable = [
     '_seq',
-    'code',
-    'description',
+    'endpoint',
+    'method',
+    'action'
   ];
   protected $table = 'permissions';
 

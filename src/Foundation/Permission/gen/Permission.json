@@ -5,30 +5,25 @@
   "Utillity": "False",
   "ColDefinitions": [
     {
-      "colName": "code",
+      "colName": "endpoint",
       "colDataType": "string",
-      "colLength": "50",
+      "colLength": "250",
       "colNotNull": "True",
       "colModel": ""
     },
     {
-      "colName": "description",
+      "colName": "method",
       "colDataType": "string",
-      "colLength": "100",
+      "colLength": "15",
       "colNotNull": "True",
       "colModel": ""
     },
     {
-      "colName": null,
-      "colDataType": null,
-      "colLength": null,
-      "colNotNull": null,
-      "colModel": null
-    }
-  ],
-  "ChildDefinitions": [
-    {
-      "colHasMany": "RolePermission"
+      "colName": "action",
+      "colDataType": "string",
+      "colLength": "250",
+      "colNotNull": "True",
+      "colModel": ""
     }
   ]
 }
