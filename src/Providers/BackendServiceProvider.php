@@ -4,6 +4,8 @@ namespace Premialabs\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
+use Courier\Console\Commands\InstallCommand;
+use Courier\Console\Commands\NetworkCommand;
 
 class BackendServiceProvider extends ServiceProvider
 {
@@ -35,6 +37,11 @@ class BackendServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__ . '/../../config/premialabs.php' => config_path('premialabs.php'),
             ], 'premialabs-config');
+
+            $this->commands([
+                InstallCommand::class,
+                NetworkCommand::class,
+            ]);
         }
     }
 }

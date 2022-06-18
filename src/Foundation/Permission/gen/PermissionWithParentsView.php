@@ -18,8 +18,9 @@ class PermissionWithParentsView extends JsonResource
             'id' => $this->id,
             '_line_no' => $this->_line_no,
             '_seq' => $this->_seq,
-            'code' => $this->code,
-            'description' => $this->description,
+            'endpoint' => $this->endpoint,
+            'method' => $this->method,
+            'action' => $this->action,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at
         ];
