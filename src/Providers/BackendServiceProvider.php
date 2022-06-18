@@ -4,8 +4,7 @@ namespace Premialabs\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Courier\Console\Commands\InstallCommand;
-use Courier\Console\Commands\NetworkCommand;
+use Premialabs\Commands\ScanPermissionsCommand;
 
 class BackendServiceProvider extends ServiceProvider
 {
@@ -39,8 +38,7 @@ class BackendServiceProvider extends ServiceProvider
             ], 'premialabs-config');
 
             $this->commands([
-                InstallCommand::class,
-                NetworkCommand::class,
+                ScanPermissionsCommand::class,
             ]);
         }
     }
