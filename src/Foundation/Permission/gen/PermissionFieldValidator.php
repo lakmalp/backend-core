@@ -8,7 +8,7 @@ class PermissionFieldValidator
   {
     return [
 
-      'endpoint' => ['required'],
+      'endpoint' => ['nullable'],
       'method' => ['required'],
       'action' => ['required'],
 
