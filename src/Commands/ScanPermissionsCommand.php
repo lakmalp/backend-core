@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Premialabs\Foundation\Permission\PermissionRepo;
 use Premialabs\Foundation\Permission\gen\Permission;
+use Premialabs\Foundation\RolePermission\gen\RolePermission;
 
 class ScanPermissionsCommand extends Command
 {
@@ -33,6 +34,8 @@ class ScanPermissionsCommand extends Command
      */
     public function handle()
     {
+        $this->_deleteUnassignedPermissions();
+
         $_seq_max = Permission::max('_seq');
         $_seq = (is_null($_seq_max) ? 99900 : $_seq_max + 100);
 
@@ -47,13 +50,18 @@ class ScanPermissionsCommand extends Command
                     list($endpoint, $method, $action) = $route;
                     (new PermissionRepo)->createRec([
                         '_seq' => $_seq,
-                        'endpoint' => $endpoint,
+                        'endpoint' => Str::camel($className) . "/" . $endpoint,
                         'method' => $method,
                         'action' => $action
                     ]);
                 }
             }
-            // $this->info($fileName->getRelativePathName());
         }, File::allFiles(app_path() . "/Src"));
+    }
+
+    private function _deleteUnassignedPermissions()
+    {
+        $perms = Permission::join('role_permissions', 'role_permissions.permission_id', '<>', 'permissions.id')
+            ->delete();
     }
 }
