@@ -11,14 +11,14 @@ use Premialabs\Foundation\Permission\PermissionRepo;
 use Premialabs\Foundation\Permission\gen\Permission;
 use Premialabs\Foundation\RolePermission\gen\RolePermission;
 
-class ScanPermissionsCommand extends Command
+class PlScanPermissionsCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'scan:permissions';
+    protected $signature = 'pl:scanPermissions';
 
     /**
      * The console command description.
