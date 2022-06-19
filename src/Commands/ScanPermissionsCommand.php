@@ -62,7 +62,7 @@ class ScanPermissionsCommand extends Command
 
     private function _deleteUnassignedPermissions()
     {
-        Permission::join('role_permissions', 'role_permissions.permission_id', '<>', 'permissions.id')
-            ->destroy();
+        Permission::leftJoin('role_permissions', 'role_permissions.permission_id', '<>', 'permissions.id')
+            ->delete();
     }
 }
