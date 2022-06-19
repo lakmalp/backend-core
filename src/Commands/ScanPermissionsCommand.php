@@ -51,7 +51,7 @@ class ScanPermissionsCommand extends Command
                     list($endpoint, $method, $action) = $route;
                     (new PermissionRepo)->createRec([
                         '_seq' => $_seq,
-                        'endpoint' => Str::camel($model) . "\\" . $endpoint,
+                        'endpoint' => Str::plural(Str::camel($model)) . "\\" . $endpoint,
                         'method' => $method,
                         'action' => $action
                     ]);
@@ -62,7 +62,7 @@ class ScanPermissionsCommand extends Command
 
     private function _deleteUnassignedPermissions()
     {
-        $perms = Permission::join('role_permissions', 'role_permissions.permission_id', '<>', 'permissions.id')
-            ->delete();
+        Permission::join('role_permissions', 'role_permissions.permission_id', '<>', 'permissions.id')
+            ->destroy();
     }
 }
