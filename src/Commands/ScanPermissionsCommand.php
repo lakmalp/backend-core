@@ -42,15 +42,16 @@ class ScanPermissionsCommand extends Command
         array_map(function ($fileName) use (&$_seq) {
             $fileName = $fileName->getRelativePathName();
             if (Str::contains($fileName, "Controller.php")) {
+                $model = explode("^", str_replace("/", "^", $fileName))[0];
                 $className = "App\\Src\\" . $fileName;
-                $className = Str::replace(".php", "", $className);
+                $className = str_replace(".php", "", $className);
                 $routes = $className::routes();
                 foreach ($routes as $route) {
                     $_seq = $_seq + 100;
                     list($endpoint, $method, $action) = $route;
                     (new PermissionRepo)->createRec([
                         '_seq' => $_seq,
-                        'endpoint' => Str::camel($className) . "/" . $endpoint,
+                        'endpoint' => Str::camel($model) . "\\" . $endpoint,
                         'method' => $method,
                         'action' => $action
                     ]);
