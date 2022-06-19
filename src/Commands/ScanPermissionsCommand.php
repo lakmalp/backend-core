@@ -42,7 +42,7 @@ class ScanPermissionsCommand extends Command
         array_map(function ($fileName) use (&$_seq) {
             $fileName = $fileName->getRelativePathName();
             if (Str::contains($fileName, "Controller.php")) {
-                $model = explode("^", str_replace("/", "^", $fileName))[0];
+                $model = explode("^", str_replace("\\", "^", $fileName))[0];
                 $className = "App\\Src\\" . $fileName;
                 $className = str_replace(".php", "", $className);
                 $routes = $className::routes();
