@@ -4,7 +4,7 @@ namespace Premialabs\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
-use Premialabs\Commands\ScanPermissionsCommand;
+use Premialabs\Commands\PlScanPermissionsCommand;
 
 class BackendServiceProvider extends ServiceProvider
 {
@@ -38,7 +38,7 @@ class BackendServiceProvider extends ServiceProvider
             ], 'premialabs-config');
 
             $this->commands([
-                ScanPermissionsCommand::class,
+                PlScanPermissionsCommand::class,
             ]);
         }
     }
