@@ -56,7 +56,6 @@ class ScanPermissionsCommand extends Command
                     ]);
                 }
             }
-            // $this->info($fileName->getRelativePathName());
         }, File::allFiles(app_path() . "/Src"));
     }
 
