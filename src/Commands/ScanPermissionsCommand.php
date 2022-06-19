@@ -49,9 +49,10 @@ class ScanPermissionsCommand extends Command
                 foreach ($routes as $route) {
                     $_seq = $_seq + 100;
                     list($endpoint, $method, $action) = $route;
+                    $model_formatted = Str::plural(Str::camel($model));
                     (new PermissionRepo)->createRec([
                         '_seq' => $_seq,
-                        'endpoint' => Str::plural(Str::camel($model)) . "\\" . $endpoint,
+                        'endpoint' => (is_null($model_formatted) ? $model_formatted : $model_formatted . "\\" . $endpoint),
                         'method' => $method,
                         'action' => $action
                     ]);
