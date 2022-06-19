@@ -52,7 +52,7 @@ class ScanPermissionsCommand extends Command
                     $model_formatted = Str::plural(Str::camel($model));
                     (new PermissionRepo)->createRec([
                         '_seq' => $_seq,
-                        'endpoint' => (is_null($model_formatted) ? $model_formatted : $model_formatted . "\\" . $endpoint),
+                        'endpoint' => (is_null($endpoint) ? $model_formatted : $model_formatted . "\\" . $endpoint),
                         'method' => $method,
                         'action' => $action
                     ]);
