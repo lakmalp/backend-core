@@ -5,6 +5,7 @@ namespace Premialabs\Http\Middleware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Premialabs\Foundation\Permission\gen\Permission;
+use Closure;
 
 class CheckAuthorization
 {
