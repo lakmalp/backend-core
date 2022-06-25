@@ -27,7 +27,9 @@ class ConnectSysadminRoleToUser extends Migration
         UserRole::insert([
             '_seq' => $max_seq,
             'user_id' => $sys_admin_user->id,
-            'role_id' => $sys_admin_role->id
+            'role_id' => $sys_admin_role->id,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
         ]);
     }
 
