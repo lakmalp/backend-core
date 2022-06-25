@@ -1,0 +1,101 @@
+<?php
+
+namespace Premialabs\Seeders;
+
+use Premialabs\Foundation\SystemParameter;
+use Premialabs\Foundation\Permission\gen\Permission;
+use Illuminate\Database\Seeder;
+use Premialabs\Foundation\Role\gen\Role;
+use Premialabs\Foundation\RolePermission\gen\RolePermission;
+use Premialabs\Foundation\UserRole\gen\UserRole;
+
+class AddPermissionsToSysAdminRoleSeeder extends Seeder
+{
+    private $sys_admin_role_id;
+    private $_seq;
+
+    public function __construct()
+    {
+        $max_seq = Permission::max('_seq');
+        $this->_seq = ($max_seq === 0 ? 99900 : $max_seq);
+        $this->sys_admin_role_id = Role::where('code', 'SYS_ADMIN')->first()->id;
+    }
+
+    private function _addPermissionToRole($_seq, $endpoint, $method, $action, $sys_role_id)
+    {
+        $perm = Permission::where(['endpoint' => $endpoint, 'method' => $method])->first();
+
+        if (is_null($perm)) {
+            $perm = Permission::insert(['_seq' => $_seq, 'endpoint' => $endpoint, 'method' => $method, 'action' => $action]);
+        } else {
+            $perm->action = $action;
+            $perm->save();
+        }
+
+        RolePermission::insert([
+            'permission_id' => $perm->id,
+            'role_id' => $sys_role_id
+        ]);
+    }
+
+    private function _fetchSeq()
+    {
+        $this->_seq = $this->_seq + 100;
+        return $this->_seq;
+    }
+
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/auditableModels', 'GET', 'AuditableModelController@index', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/auditableModels', 'POST', 'AuditableModelController@create', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/auditableModels/?', 'DELETE', 'AuditableModelController@delete', $this->sys_admin_role_id);
+
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions', 'POST', 'PermissionController@create', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/?', 'GET', 'PermissionController@show', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions', 'GET', 'PermissionController@query', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/?', 'PATCH', 'PermissionController@update', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/?', 'DELETE', 'PermissionController@delete', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/prepareCreate', 'GET', 'PermissionController@prepareCreate', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/?/prepareDuplicate', 'GET', 'PermissionController@prepareDuplicate', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/?/prepareEdit', 'GET', 'PermissionController@prepareEdit', $this->sys_admin_role_id);
+
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/rolePermissions', 'POST', 'RolePermissionController@create', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/rolePermissions/?', 'GET', 'RolePermissionController@show', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/rolePermissions', 'GET', 'RolePermissionController@query', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/rolePermissions/?', 'PATCH', 'RolePermissionController@update', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/rolePermissions/?', 'DELETE', 'RolePermissionController@delete', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/rolePermissions/prepareCreate', 'GET', 'RolePermissionController@prepareCreate', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/rolePermissions/?/prepareDuplicate', 'GET', 'RolePermissionController@prepareDuplicate', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/rolePermissions/?/prepareEdit', 'GET', 'RolePermissionController@prepareEdit', $this->sys_admin_role_id);
+
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/roles', 'POST', 'RoleController@create', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/roles/?', 'GET', 'RoleController@show', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/roles', 'GET', 'RoleController@query', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/roles/?', 'PATCH', 'RoleController@update', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/roles/?', 'DELETE', 'RoleController@delete', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/roles/prepareCreate', 'GET', 'RoleController@prepareCreate', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/roles/?/prepareDuplicate', 'GET', 'RoleController@prepareDuplicate', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/roles/?/prepareEdit', 'GET', 'RoleController@prepareEdit', $this->sys_admin_role_id);
+
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/userRoles', 'POST', 'UserRoleController@create', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/userRoles/?', 'GET', 'UserRoleController@show', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/userRoles', 'GET', 'UserRoleController@query', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/userRoles/?', 'PATCH', 'UserRoleController@update', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/userRoles/?', 'DELETE', 'UserRoleController@delete', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/userRoles/prepareCreate', 'GET', 'UserRoleController@prepareCreate', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/userRoles/?/prepareDuplicate', 'GET', 'UserRoleController@prepareDuplicate', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/userRoles/?/prepareEdit', 'GET', 'UserRoleController@prepareEdit', $this->sys_admin_role_id);
+
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/systemParameters', 'GET', 'SystemParameterController@index', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/systemParameters', 'PATCH', 'SystemParameterController@update', $this->sys_admin_role_id);
+
+        $this->_addPermissionToRole($this->_fetchSeq(), 'login', 'POST', 'AuthenticatedSessionController@store', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'logout', 'POST', 'AuthenticatedSessionController@destroy', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'sanctum/csrf-cookie', 'GET', 'CsrfCookieController@show', $this->sys_admin_role_id);
+    }
+}

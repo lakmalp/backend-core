@@ -20,6 +20,8 @@ class CreateTablePermissions extends Migration
             $table->string('method', 15);
             $table->string('action', 250);
             $table->timestamps();
+
+            $table->unique(["endpoint", "method"]);
         });
     }
     /**
