@@ -5,6 +5,7 @@ namespace Premialabs\Http\Middleware;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Premialabs\Foundation\Permission\gen\Permission;
+use Illuminate\Support\Facades\Auth;
 use Closure;
 
 class CheckAuthorization
@@ -21,7 +22,7 @@ class CheckAuthorization
           ->join('role_permissions', 'role_permissions.permission_id', '=', 'permissions.id')
           ->join('user_roles', 'user_roles.role_id', '=', 'role_permissions.role_id')
           ->join('users', 'users.id', '=', 'user_roles.user_id')
-          ->where('users.id', auth()->user()->id)
+          ->where('users.id', Auth::user()->id)
           ->get();
       });
 
