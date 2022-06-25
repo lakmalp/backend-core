@@ -32,7 +32,12 @@ class AddPermissionsToSysAdminRoleSeeder extends Seeder
             $perm->save();
         }
 
+        $max_seq = RolePermission::max('_seq');
+
+        $max_seq = ($max_seq === 0 ? 99900 : $max_seq + 100);
+
         RolePermission::create([
+            '_seq' => $max_seq,
             'permission_id' => $perm->id,
             'role_id' => $sys_role_id
         ]);
