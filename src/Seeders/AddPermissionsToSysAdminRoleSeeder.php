@@ -26,13 +26,13 @@ class AddPermissionsToSysAdminRoleSeeder extends Seeder
         $perm = Permission::where(['endpoint' => $endpoint, 'method' => $method])->first();
 
         if (is_null($perm)) {
-            $perm = Permission::insert(['_seq' => $_seq, 'endpoint' => $endpoint, 'method' => $method, 'action' => $action]);
+            $perm = Permission::create(['_seq' => $_seq, 'endpoint' => $endpoint, 'method' => $method, 'action' => $action]);
         } else {
             $perm->action = $action;
             $perm->save();
         }
 
-        RolePermission::insert([
+        RolePermission::create([
             'permission_id' => $perm->id,
             'role_id' => $sys_role_id
         ]);
