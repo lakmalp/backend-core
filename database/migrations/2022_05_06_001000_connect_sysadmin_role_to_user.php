@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Premialabs\Foundation\Role\gen\Role;
 use Premialabs\Foundation\UserRole\gen\UserRole;
+use App\Models\User;
 
 class ConnectSysadminRoleToUser extends Migration
 {
