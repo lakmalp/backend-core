@@ -2,9 +2,11 @@
 
 namespace Premialabs\Providers;
 
+use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
 use Premialabs\Commands\PlScanPermissionsCommand;
+use Premialabs\Http\Middleware\CheckAuthorization;
 
 class BackendServiceProvider extends ServiceProvider
 {
@@ -23,7 +25,7 @@ class BackendServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Kernel $kernel)
     {
         Route::middleware(['api', 'auth:sanctum'])->prefix('api')->group(function () {
             $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
@@ -41,5 +43,8 @@ class BackendServiceProvider extends ServiceProvider
                 PlScanPermissionsCommand::class,
             ]);
         }
+
+        $router = $this->app->make(Router::class);
+        $router->pushMiddleware(CheckAuthorization::class);
     }
 }
