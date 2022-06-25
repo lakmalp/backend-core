@@ -2,6 +2,7 @@
 
 namespace Premialabs\Providers;
 
+use Illuminate\Routing\Router;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Route;
