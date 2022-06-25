@@ -20,7 +20,12 @@ class ConnectSysadminRoleToUser extends Migration
 
         $sys_admin_role = Role::where('code', 'SYS_ADMIN')->first();
 
+        $max_seq = UserRole::max('_seq');
+
+        $max_seq = ($max_seq === 0 ? 99900 : $max_seq + 100);
+
         UserRole::insert([
+            '_seq' => $max_seq,
             'user_id' => $sys_admin_user->id,
             'role_id' => $sys_admin_role->id
         ]);
