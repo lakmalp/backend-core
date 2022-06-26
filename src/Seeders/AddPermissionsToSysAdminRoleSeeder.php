@@ -63,7 +63,7 @@ class AddPermissionsToSysAdminRoleSeeder extends Seeder
         $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions', 'POST', 'PermissionController@create', $this->sys_admin_role_id);
         $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/{permission}', 'GET', 'PermissionController@show', $this->sys_admin_role_id);
         $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions', 'GET', 'PermissionController@query', $this->sys_admin_role_id);
-        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/{permission}{permission}', 'PATCH', 'PermissionController@update', $this->sys_admin_role_id);
+        $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/{permission}', 'PATCH', 'PermissionController@update', $this->sys_admin_role_id);
         $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/{permission}', 'DELETE', 'PermissionController@delete', $this->sys_admin_role_id);
         $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/prepareCreate', 'GET', 'PermissionController@prepareCreate', $this->sys_admin_role_id);
         $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/permissions/{permission}/prepareDuplicate', 'GET', 'PermissionController@prepareDuplicate', $this->sys_admin_role_id);
