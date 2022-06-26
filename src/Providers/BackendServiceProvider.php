@@ -28,7 +28,10 @@ class BackendServiceProvider extends ServiceProvider
      */
     public function boot(Kernel $kernel)
     {
-        Route::middleware(['api', 'auth:sanctum'])->prefix('api')->group(function () {
+        $router = $this->app->make(Router::class);
+        $router->aliasMiddleware('checkauth', CheckAuthorization::class);
+
+        Route::middleware(['api', 'auth:sanctum', 'checkauth'])->prefix('api')->group(function () {
             $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
         });
 
@@ -44,9 +47,5 @@ class BackendServiceProvider extends ServiceProvider
                 PlScanPermissionsCommand::class,
             ]);
         }
-
-        // $kernel->pushMiddleware(CheckAuthorization::class);
-        $router = $this->app->make(Router::class);
-        $router->pushMiddlewareToGroup('api', CheckAuthorization::class);
     }
 }
