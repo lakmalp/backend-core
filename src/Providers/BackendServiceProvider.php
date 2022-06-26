@@ -45,6 +45,8 @@ class BackendServiceProvider extends ServiceProvider
             ]);
         }
 
-        $kernel->pushMiddleware(CheckAuthorization::class);
+        // $kernel->pushMiddleware(CheckAuthorization::class);
+        $router = $this->app->make(Router::class);
+        $router->pushMiddlewareToGroup('api', CheckAuthorization::class);
     }
 }

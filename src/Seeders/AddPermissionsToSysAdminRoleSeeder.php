@@ -99,8 +99,8 @@ class AddPermissionsToSysAdminRoleSeeder extends Seeder
         $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/systemParameters', 'GET', 'SystemParameterController@index', $this->sys_admin_role_id);
         $this->_addPermissionToRole($this->_fetchSeq(), 'api/fnd/systemParameters', 'PATCH', 'SystemParameterController@update', $this->sys_admin_role_id);
 
-        $this->_addPermissionToRole($this->_fetchSeq(), 'login', 'POST', 'AuthenticatedSessionController@store', $this->sys_admin_role_id);
-        $this->_addPermissionToRole($this->_fetchSeq(), 'logout', 'POST', 'AuthenticatedSessionController@destroy', $this->sys_admin_role_id);
-        $this->_addPermissionToRole($this->_fetchSeq(), 'sanctum/csrf-cookie', 'GET', 'CsrfCookieController@show', $this->sys_admin_role_id);
+        // $this->_addPermissionToRole($this->_fetchSeq(), 'login', 'POST', 'AuthenticatedSessionController@store', $this->sys_admin_role_id);
+        // $this->_addPermissionToRole($this->_fetchSeq(), 'logout', 'POST', 'AuthenticatedSessionController@destroy', $this->sys_admin_role_id);
+        // $this->_addPermissionToRole($this->_fetchSeq(), 'sanctum/csrf-cookie', 'GET', 'CsrfCookieController@show', $this->sys_admin_role_id);
     }
 }
