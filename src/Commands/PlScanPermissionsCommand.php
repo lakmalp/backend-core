@@ -54,7 +54,7 @@ class PlScanPermissionsCommand extends Command
                         '_seq' => $_seq,
                         'endpoint' => "api/" . (($endpoint === "") ? $model_plural : $model_plural . "/" . $endpoint),
                         'method' => $method,
-                        'action' => $action
+                        'action' => $model . 'Controller@' . $action
                     ]);
                 }
             }
