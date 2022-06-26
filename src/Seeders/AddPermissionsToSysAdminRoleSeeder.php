@@ -12,7 +12,7 @@ use Premialabs\Foundation\UserRole\gen\UserRole;
 class AddPermissionsToSysAdminRoleSeeder extends Seeder
 {
     private $sys_admin_role_id;
-    private $_seq;
+    private $_seq = null;
 
     public function __construct()
     {
@@ -45,7 +45,12 @@ class AddPermissionsToSysAdminRoleSeeder extends Seeder
 
     private function _fetchSeq()
     {
-        $this->_seq = $this->_seq + 100;
+        if (is_null($this->_seq)) {
+            $max_seq = Permission::max('_seq');
+            $this->_seq = ($max_seq === 0 ? 99900 : $max_seq + 100);
+        } else {
+            $this->_seq = $this->_seq + 100;
+        }
         return $this->_seq;
     }
 
