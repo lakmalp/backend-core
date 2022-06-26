@@ -49,10 +49,10 @@ class PlScanPermissionsCommand extends Command
                 foreach ($routes as $route) {
                     $_seq = $_seq + 100;
                     list($endpoint, $method, $action) = $route;
-                    $model_formatted = Str::plural(Str::camel($model));
+                    $model_plural = Str::plural(Str::camel($model));
                     (new PermissionRepo)->createRec([
                         '_seq' => $_seq,
-                        'endpoint' => (($endpoint === "") ? $model_formatted : $model_formatted . "\\" . $endpoint),
+                        'endpoint' => "api/" . (($endpoint === "") ? $model_plural : $model_plural . "/" . $endpoint),
                         'method' => $method,
                         'action' => $action
                     ]);
@@ -63,7 +63,7 @@ class PlScanPermissionsCommand extends Command
 
     private function _deleteUnassignedPermissions()
     {
-        Permission::leftJoin('role_permissions', 'role_permissions.permission_id', '<>', 'permissions.id')
-            ->delete();
+        $exclude_ids = RolePermission::select('permission_id')->distinct()->pluck('permission_id')->toArray();
+        Permission::whereNotIn('id', $exclude_ids)->delete();
     }
 }
