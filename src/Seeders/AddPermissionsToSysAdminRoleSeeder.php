@@ -12,12 +12,17 @@ use Premialabs\Foundation\UserRole\gen\UserRole;
 class AddPermissionsToSysAdminRoleSeeder extends Seeder
 {
     private $sys_admin_role_id;
-    private $_seq = null;
+    private $_perm_seq = null;
+    private $_role_perm_seq = null;
 
     public function __construct()
     {
         $max_seq = Permission::max('_seq');
-        $this->_seq = ($max_seq === 0 ? 99900 : $max_seq);
+        $this->_perm_seq = (is_null($max_seq) ? 100000 : $max_seq + 100);
+
+        $max_seq = RolePermission::max('_seq');
+        $this->_role_perm_seq = (is_null($max_seq) ? 100000 : $max_seq + 100);
+
         $this->sys_admin_role_id = Role::where('code', 'SYS_ADMIN')->first()->id;
     }
 
@@ -26,13 +31,13 @@ class AddPermissionsToSysAdminRoleSeeder extends Seeder
         $perm = Permission::where(['endpoint' => $endpoint, 'method' => $method])->first();
 
         if (is_null($perm)) {
-            if (is_null($this->_seq)) {
-                $max_seq = Permission::max('_seq');
-                $this->_seq = ($max_seq === 0 ? 99900 : $max_seq + 100);
-            } else {
-                $this->_seq = $this->_seq + 100;
-            }
-            $perm = Permission::create(['_seq' => $this->_seq, 'endpoint' => $endpoint, 'method' => $method, 'action' => $action]);
+            $perm = Permission::create([
+                '_seq' => $this->_perm_seq,
+                'method' => $method,
+                'endpoint' => $endpoint,
+                'action' => $action
+            ]);
+            $this->_perm_seq = $this->_perm_seq + 100;
         } else {
             $perm->action = $action;
             $perm->save();
@@ -43,14 +48,12 @@ class AddPermissionsToSysAdminRoleSeeder extends Seeder
 
     private function _createRolePermission($perm, $sys_role_id)
     {
-        $max_seq = RolePermission::max('_seq');
-        $max_seq = ($max_seq === 0 ? 99900 : $max_seq + 100);
-
         RolePermission::create([
-            '_seq' => $max_seq,
+            '_seq' => $this->_role_perm_seq,
             'permission_id' => $perm->id,
             'role_id' => $sys_role_id
         ]);
+        $this->_role_perm_seq = $this->_role_perm_seq + 100;
     }
 
     private function _addPermissionToRole($endpoint, $method, $action, $sys_role_id)
