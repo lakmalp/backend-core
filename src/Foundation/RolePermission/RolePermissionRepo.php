@@ -6,6 +6,7 @@ use Premialabs\Foundation\RolePermission\gen\RolePermission;
 use Premialabs\Foundation\RolePermission\gen\RolePermissionBaseRepo;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
+use Premialabs\Foundation\RolePermission\gen\RolePermissionWithParentsView;
 
 class RolePermissionRepo extends RolePermissionBaseRepo
 {
@@ -84,5 +85,19 @@ class RolePermissionRepo extends RolePermissionBaseRepo
       $role_permission->delete();
       return null;
     }
+  }
+
+  public function list($request)
+  {
+    $data = RolePermission::orderBy('_seq')
+      ->get()
+      ->map(
+        function ($item, $key) use (&$i) {
+          $item['_line_no'] = ++$i;
+          return $item;
+        }
+      );
+
+    return RolePermissionWithParentsView::collection($data);
   }
 }
