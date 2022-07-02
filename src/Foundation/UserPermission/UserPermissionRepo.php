@@ -12,12 +12,11 @@ class UserPermissionRepo
 {
   public function query($request)
   {
-    return Permission::select(['endpoint', 'method'])
+    return Permission::select(['method', 'endpoint'])
       ->join('role_permissions', 'role_permissions.permission_id', '=', 'permissions.id')
       ->join('user_roles', 'user_roles.role_id', '=', 'role_permissions.role_id')
       ->join('users', 'users.id', '=', 'user_roles.user_id')
       ->where('users.id', Auth::user()->id)
-      ->pluck('endpoint', 'method')
-      ->toArray();
+      ->get();
   }
 }

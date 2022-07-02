@@ -23,8 +23,7 @@ class CheckAuthorization
           ->join('user_roles', 'user_roles.role_id', '=', 'role_permissions.role_id')
           ->join('users', 'users.id', '=', 'user_roles.user_id')
           ->where('users.id', Auth::user()->id)
-          ->pluck('endpoint', 'method')
-          ->toArray();
+          ->get();
       });
 
       return response()->json(["status" => "success", "data" => $user_grants], 200);
