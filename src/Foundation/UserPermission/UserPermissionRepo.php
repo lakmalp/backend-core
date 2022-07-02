@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Premialabs\Foundation\Permission\gen\Permission;
+use Illuminate\Support\Facades\Auth;
 
 class UserPermissionRepo
 {
