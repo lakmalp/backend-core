@@ -32,6 +32,7 @@ class RolePermissionController extends FndDatabaseController
       ['{rolePermission}', 'PATCH', 'update'],
 
       // read
+      ['list', 'GET', 'list'],
       ['{rolePermission}', 'GET', 'show'],
       ['', 'GET', 'query'],
 
@@ -51,5 +52,10 @@ class RolePermissionController extends FndDatabaseController
     $permission_id = $request->input('permission_id');
     $role_id = $request->input('role_id');
     return Utilities::exec($this, 'toggle', [$permission_id, $role_id]);
+  }
+
+  public function list(Request $request)
+  {
+    return Utilities::fetch($this, 'list', [$request]);
   }
 }
