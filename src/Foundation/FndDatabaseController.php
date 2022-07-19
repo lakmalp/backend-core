@@ -32,7 +32,7 @@ class FndDatabaseController extends Controller
             ['', 'POST', 'create'],
 
             // update
-            ['prepareEdit', 'GET', 'prepareEdit'],
+            ['{site}/prepareEdit', 'GET', 'prepareEdit'],
             ['{site}', 'PATCH', 'update'],
 
             // read
@@ -70,9 +70,8 @@ class FndDatabaseController extends Controller
         return Utilities::fetch($this, 'prepareDuplicate', [$id]);
     }
 
-    public function prepareEdit(Request $request)
+    public function prepareEdit($id)
     {
-        $id = $request->query('id');
         return Utilities::fetch($this, 'prepareEdit', [$id]);
     }
 
