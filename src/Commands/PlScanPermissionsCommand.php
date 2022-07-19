@@ -50,12 +50,18 @@ class PlScanPermissionsCommand extends Command
                     $_seq = $_seq + 100;
                     list($endpoint, $method, $action) = $route;
                     $model_plural = Str::plural(Str::camel($model));
-                    (new PermissionRepo)->createRec([
-                        '_seq' => $_seq,
+                    $is_exist = Permission::where([
                         'endpoint' => "api/" . (($endpoint === "") ? $model_plural : $model_plural . "/" . $endpoint),
-                        'method' => $method,
-                        'action' => $model . 'Controller@' . $action
-                    ]);
+                        'method' => $method
+                    ])->exists();
+                    if (!$is_exist) {
+                        (new PermissionRepo)->createRec([
+                            '_seq' => $_seq,
+                            'endpoint' => "api/" . (($endpoint === "") ? $model_plural : $model_plural . "/" . $endpoint),
+                            'method' => $method,
+                            'action' => $model . 'Controller@' . $action
+                        ]);
+                    }
                 }
             }
         }, File::allFiles(app_path() . "/Src"));
