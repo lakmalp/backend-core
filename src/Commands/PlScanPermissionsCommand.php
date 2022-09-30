@@ -42,8 +42,15 @@ class PlScanPermissionsCommand extends Command
         array_map(function ($fileName) use (&$_seq) {
             $fileName = $fileName->getRelativePathName();
             if (Str::contains($fileName, "Controller.php")) {
+                //windows
                 $model = explode("^", str_replace("\\", "^", $fileName))[0];
-                $className = "App\\Src\\" . $fileName;
+                $myfilename = explode("^", str_replace("\\", "^", $fileName))[1];
+
+                //ubuntu
+                //$model = explode("^", str_replace("\", "^", $fileName))[0];
+                //$myfilename = explode("^", str_replace("\", "^", $fileName))[1];
+
+                $className = "App\\Src\\" . $model . "\\" . $myfilename;
                 $className = str_replace(".php", "", $className);
                 $routes = $className::routes();
                 foreach ($routes as $route) {
