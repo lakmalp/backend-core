@@ -11,8 +11,6 @@ use Premialabs\Foundation\Permission\PermissionRepo;
 use Premialabs\Foundation\Permission\gen\Permission;
 use Premialabs\Foundation\RolePermission\gen\RolePermission;
 
-PHP_OS == "Windows" || PHP_OS == "WINNT" ? define("_SEPARATOR_", "\\") : define("_SEPARATOR_", "/");
-
 class PlScanPermissionsCommand extends Command
 {
     /**
@@ -44,11 +42,11 @@ class PlScanPermissionsCommand extends Command
         array_map(function ($fileName) use (&$_seq) {
             $fileName = $fileName->getRelativePathName();
             if (Str::contains($fileName, "Controller.php")) {
-                //windows
-                $model = explode("^", str_replace(_SEPARATOR_, "^", $fileName))[0];
-                $myfilename = explode("^", str_replace(_SEPARATOR_, "^", $fileName))[1];
+                $model = explode("^", str_replace("/", "^", $fileName))[0];
+                $myfilename = explode("^", str_replace("/", "^", $fileName))[1];
 
-                $className = "App" . _SEPARATOR_ . "Src" . _SEPARATOR_ . $model . _SEPARATOR_ . $myfilename;
+                //$className = "App//Src//" . $fileName;
+                $className = "App\\Src\\" . $model . "\\" . $myfilename;
                 $className = str_replace(".php", "", $className);
                 $routes = $className::routes();
                 foreach ($routes as $route) {
