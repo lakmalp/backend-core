@@ -11,7 +11,7 @@ use Premialabs\Foundation\Permission\PermissionRepo;
 use Premialabs\Foundation\Permission\gen\Permission;
 use Premialabs\Foundation\RolePermission\gen\RolePermission;
 
-PHP_OS == "Windows" || PHP_OS == "WINNT" ? define("_SEPARATOR_", "\\") : define("SEPARATOR", "/");
+PHP_OS == "Windows" || PHP_OS == "WINNT" ? define("_SEPARATOR_", "\\") : define("_SEPARATOR_", "/");
 
 class PlScanPermissionsCommand extends Command
 {
