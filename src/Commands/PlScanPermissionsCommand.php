@@ -43,14 +43,14 @@ class PlScanPermissionsCommand extends Command
             $fileName = $fileName->getRelativePathName();
             if (Str::contains($fileName, "Controller.php")) {
                 //windows
-                $model = explode("^", str_replace("\\", "^", $fileName))[0];
-                $myfilename = explode("^", str_replace("\\", "^", $fileName))[1];
+                $model = explode("^", str_replace(PATH_SEPARATOR, "^", $fileName))[0];
+                $myfilename = explode("^", str_replace(PATH_SEPARATOR, "^", $fileName))[1];
 
                 //ubuntu
                 //$model = explode("^", str_replace("\", "^", $fileName))[0];
                 //$myfilename = explode("^", str_replace("\", "^", $fileName))[1];
 
-                $className = "App\\Src\\" . $model . "\\" . $myfilename;
+                $className = "App" . PATH_SEPARATOR . "Src" . PATH_SEPARATOR . $model . PATH_SEPARATOR . $myfilename;
                 $className = str_replace(".php", "", $className);
                 $routes = $className::routes();
                 foreach ($routes as $route) {
