@@ -11,6 +11,9 @@ use Premialabs\Foundation\Permission\PermissionRepo;
 use Premialabs\Foundation\Permission\gen\Permission;
 use Premialabs\Foundation\RolePermission\gen\RolePermission;
 
+PHP_OS == "Windows" || PHP_OS == "WINNT" ? define("DIR_PATH_SEPARATOR", "\\") : define("DIR_PATH_SEPARATOR", "\\");
+PHP_OS == "Windows" || PHP_OS == "WINNT" ? define("CLASS_PATH_SEPARATOR", "\\") : define("CLASS_PATH_SEPARATOR", "/");
+
 class PlScanPermissionsCommand extends Command
 {
     /**
@@ -42,11 +45,22 @@ class PlScanPermissionsCommand extends Command
         array_map(function ($fileName) use (&$_seq) {
             $fileName = $fileName->getRelativePathName();
             if (Str::contains($fileName, "Controller.php")) {
-                $model = explode("^", str_replace("/", "^", $fileName))[0];
-                $myfilename = explode("^", str_replace("/", "^", $fileName))[1];
+                // --- linux - start ---
+                // $model = explode("^", str_replace("\\", "^", $fileName))[0];
+                // $myfilename = explode("^", str_replace("\\", "^", $fileName))[1];
+                // $className = "App/Src/" . $fileName;                
+                // --- linux - end ---
 
-                //$className = "App//Src//" . $fileName;
-                $className = "App\\Src\\" . $model . "\\" . $myfilename;
+                // --- win - start ---
+                // $model = explode("^", str_replace("\\", "^", $fileName))[0];
+                // $myfilename = explode("^", str_replace("\\", "^", $fileName))[1];
+                // $className = "App\\Src\\" . $model . "\\" . $myfilename;
+                // --- win - end ---
+
+                $model = explode("^", str_replace(DIR_PATH_SEPARATOR, "^", $fileName))[0];
+                $myfilename = explode("^", str_replace(DIR_PATH_SEPARATOR, "^", $fileName))[1];
+                $className = "App" . CLASS_PATH_SEPARATOR . "Src" . CLASS_PATH_SEPARATOR . $model . CLASS_PATH_SEPARATOR . $myfilename;
+
                 $className = str_replace(".php", "", $className);
                 $routes = $className::routes();
                 foreach ($routes as $route) {
