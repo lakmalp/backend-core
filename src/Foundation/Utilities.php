@@ -298,13 +298,17 @@ class Utilities
     }
   }
 
-  public static function fetch($obj, $method, $params)
+  public static function fetch($obj, $method, $params, $type = 'json')
   {
     $environment = App::environment();
     try {
       $ret = call_user_func_array(array($obj->repo, $method), $params);
 
-      return response()->json(["status" => "success", "data" => $ret], 200);
+      if ($type == 'json') {
+        return response()->json(["status" => "success", "data" => $ret], 200);
+      } elseif ($type == 'binary') {
+        return $ret;
+      }
     } catch (Exception $e) {
       if ($environment == 'local') {
         $res = ["status" => "error", "message" => ($e->getMessage()), "trace" => $e->getTraceAsString()];
