@@ -11,9 +11,6 @@ use Premialabs\Foundation\Permission\PermissionRepo;
 use Premialabs\Foundation\Permission\gen\Permission;
 use Premialabs\Foundation\RolePermission\gen\RolePermission;
 
-PHP_OS == "Windows" || PHP_OS == "WINNT" ? define("DIR_PATH_SEPARATOR", "\\") : define("DIR_PATH_SEPARATOR", "\\");
-PHP_OS == "Windows" || PHP_OS == "WINNT" ? define("CLASS_PATH_SEPARATOR", "\\") : define("CLASS_PATH_SEPARATOR", "/");
-
 class PlScanPermissionsCommand extends Command
 {
     /**
@@ -45,21 +42,21 @@ class PlScanPermissionsCommand extends Command
         array_map(function ($fileName) use (&$_seq) {
             $fileName = $fileName->getRelativePathName();
             if (Str::contains($fileName, "Controller.php")) {
-                // --- linux - start ---
-                // $model = explode("^", str_replace("\\", "^", $fileName))[0];
-                // $myfilename = explode("^", str_replace("\\", "^", $fileName))[1];
-                // $className = "App/Src/" . $fileName;                
-                // --- linux - end ---
+                // Use PHP's built-in constants for path handling
+                $pathParts = explode(DIRECTORY_SEPARATOR, $fileName);
+                if (count($pathParts) <= 1) {
+                    // If DIRECTORY_SEPARATOR doesn't work, try forward slash
+                    $pathParts = explode('/', $fileName);
+                }
 
-                // --- win - start ---
-                // $model = explode("^", str_replace("\\", "^", $fileName))[0];
-                // $myfilename = explode("^", str_replace("\\", "^", $fileName))[1];
-                // $className = "App\\Src\\" . $model . "\\" . $myfilename;
-                // --- win - end ---
+                // Get the model name (first directory)
+                $model = $pathParts[0];
+                // Get the filename (last part)
+                $myfilename = end($pathParts);
 
-                $model = explode("^", str_replace(DIR_PATH_SEPARATOR, "^", $fileName))[0];
-                $myfilename = explode("^", str_replace(DIR_PATH_SEPARATOR, "^", $fileName))[1];
-                $className = "App" . CLASS_PATH_SEPARATOR . "Src" . CLASS_PATH_SEPARATOR . $model . CLASS_PATH_SEPARATOR . $myfilename;
+                // Use namespace separator for class paths
+                $namespaceSeparator = '\\';
+                $className = "App{$namespaceSeparator}Src{$namespaceSeparator}{$model}{$namespaceSeparator}{$myfilename}";
 
                 $className = str_replace(".php", "", $className);
                 $routes = $className::routes();
