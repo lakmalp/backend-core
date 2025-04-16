@@ -22,7 +22,7 @@
             ]
         }
     },
-    "version": "1.4.87",
+    "version": "1.4.88",
     "require-dev": {
         "laravel/framework": "^9.0"
     }

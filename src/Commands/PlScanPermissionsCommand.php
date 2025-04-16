@@ -41,6 +41,17 @@ class PlScanPermissionsCommand extends Command
 
         array_map(function ($fileName) use (&$_seq) {
             $fileName = $fileName->getRelativePathName();
+
+            // Skip files that are in _Config or _ExternalApi folders
+            if (
+                Str::contains($fileName, "_Config" . DIRECTORY_SEPARATOR) ||
+                Str::contains($fileName, "_Config/") ||
+                Str::contains($fileName, "_ExternalApi" . DIRECTORY_SEPARATOR) ||
+                Str::contains($fileName, "_ExternalApi/")
+            ) {
+                return; // Skip this file
+            }
+            
             if (Str::contains($fileName, "Controller.php")) {
                 // Use PHP's built-in constants for path handling
                 $pathParts = explode(DIRECTORY_SEPARATOR, $fileName);
